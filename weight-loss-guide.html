@@ -1,0 +1,2165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding Your Body: Weight Loss Made Clear</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --cream: #FFF8F0;
+            --peach: #FFB4A2;
+            --peach-light: #FFD4C8;
+            --green: #A8C69F;
+            --green-dark: #7A9D6F;
+            --brown: #8B6F47;
+            --text-dark: #2C2416;
+            --text-medium: #5C4A2F;
+            --border: #E8D5C0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--cream);
+        }
+
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--peach) 0%, var(--peach-light) 100%);
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 2rem;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            color: var(--text-medium);
+        }
+
+        /* Navigation */
+        nav {
+            background: white;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 1rem;
+            gap: 1rem;
+        }
+
+        nav button {
+            background: var(--green);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        nav button:hover {
+            background: var(--green-dark);
+            transform: translateY(-2px);
+        }
+
+        nav button.active {
+            background: var(--peach);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        /* Section */
+        .section {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Cards */
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-left: 5px solid var(--peach);
+        }
+
+        .card h2 {
+            color: var(--brown);
+            margin-bottom: 1rem;
+            font-size: 1.75rem;
+        }
+
+        .card h3 {
+            color: var(--green-dark);
+            margin: 1.5rem 0 0.75rem 0;
+            font-size: 1.3rem;
+        }
+
+        .card h4 {
+            color: var(--text-medium);
+            margin: 1rem 0 0.5rem 0;
+            font-size: 1.1rem;
+        }
+
+        /* Expandable sections */
+        .expandable {
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            margin: 1rem 0;
+            overflow: hidden;
+        }
+
+        .expandable-header {
+            background: var(--peach-light);
+            padding: 1rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .expandable-header:hover {
+            background: var(--peach);
+        }
+
+        .expandable-header::after {
+            content: '▼';
+            transition: transform 0.3s;
+        }
+
+        .expandable-header.open::after {
+            transform: rotate(180deg);
+        }
+
+        .expandable-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            padding: 0 1rem;
+        }
+
+        .expandable-content.open {
+            max-height: 5000px;
+            padding: 1rem;
+        }
+
+        /* Highlight boxes */
+        .highlight {
+            background: var(--green);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+        }
+
+        .highlight h3 {
+            color: white;
+            margin-top: 0;
+        }
+
+        .warning {
+            background: var(--peach-light);
+            padding: 1rem;
+            border-left: 4px solid var(--peach);
+            margin: 1rem 0;
+            border-radius: 5px;
+        }
+
+        /* Lists */
+        ul, ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: white;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            background: var(--green);
+            color: white;
+            font-weight: 600;
+        }
+
+        tr:hover {
+            background: var(--cream);
+        }
+
+        /* Progress indicator */
+        .progress-bar {
+            background: var(--border);
+            height: 8px;
+            border-radius: 10px;
+            margin: 2rem 0;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, var(--green) 0%, var(--peach) 100%);
+            height: 100%;
+            width: 0%;
+            transition: width 0.5s;
+        }
+
+        /* Buttons */
+        .btn {
+            background: var(--green);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s;
+            display: inline-block;
+            text-decoration: none;
+            margin: 0.5rem 0.5rem 0.5rem 0;
+        }
+
+        .btn:hover {
+            background: var(--green-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: var(--peach);
+        }
+
+        .btn-secondary:hover {
+            background: #FF9B87;
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.5rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            nav button {
+                width: 100%;
+            }
+
+            .card {
+                padding: 1.5rem;
+            }
+
+            th, td {
+                padding: 0.5rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Visual diagrams */
+        .diagram {
+            background: white;
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .flow-item {
+            background: var(--peach-light);
+            padding: 1rem;
+            margin: 0.5rem 0;
+            border-radius: 10px;
+            display: inline-block;
+            min-width: 200px;
+        }
+
+        .arrow {
+            font-size: 2rem;
+            color: var(--green);
+            margin: 0.5rem 0;
+        }
+
+        /* Checklist */
+        .checklist {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .checklist li {
+            padding: 0.75rem;
+            border-bottom: 1px solid var(--border);
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .checklist li:hover {
+            background: var(--cream);
+        }
+
+        .checklist li::before {
+            content: '☐ ';
+            font-size: 1.2rem;
+            margin-right: 0.5rem;
+            color: var(--green);
+        }
+
+        .checklist li.checked::before {
+            content: '☑ ';
+            color: var(--green-dark);
+        }
+
+        /* Search */
+        .search-box {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--border);
+            border-radius: 10px;
+            font-size: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .search-box:focus {
+            outline: none;
+            border-color: var(--green);
+        }
+
+        /* Quote boxes */
+        .quote {
+            border-left: 4px solid var(--green);
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            background: var(--cream);
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Understanding Your Body: Weight Loss Made Clear</h1>
+        <p>Science-backed strategies for sustainable weight loss, managing metabolic challenges, and stress</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><button onclick="showSection('home')" class="active">Home</button></li>
+            <li><button onclick="showSection('foundation')">Foundation</button></li>
+            <li><button onclick="showSection('challenges')">Body Challenges</button></li>
+            <li><button onclick="showSection('nutrition')">Nutrition</button></li>
+            <li><button onclick="showSection('lifestyle')">Lifestyle</button></li>
+            <li><button onclick="showSection('flexibility')">Real Life</button></li>
+            <li><button onclick="showSection('action')">Action Plan</button></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <!-- HOME SECTION -->
+        <div id="home" class="section active">
+            <div class="card">
+                <h2>Welcome to Your Weight Loss Journey</h2>
+                <p>This guide is designed for you if:</p>
+                <ul>
+                    <li>You've tried dieting before but struggled to lose weight</li>
+                    <li>You deal with stress that affects your eating and energy</li>
+                    <li>You have metabolic challenges (like PCOS or insulin resistance)</li>
+                    <li>You want to understand WHY your body responds differently</li>
+                    <li>You're ready for sustainable, science-backed strategies</li>
+                </ul>
+
+                <div class="highlight">
+                    <h3>What Makes This Different</h3>
+                    <p>This isn't another generic "eat less, move more" guide. It's designed for bodies that need a specific approach because of metabolic challenges, stress, or hormonal factors.</p>
+                    <p>You'll learn:</p>
+                    <ul>
+                        <li>How your metabolism actually works</li>
+                        <li>Why timing matters as much as what you eat</li>
+                        <li>How to work WITH your body, not against it</li>
+                        <li>Strategies that account for real life (stress, social events, travel)</li>
+                    </ul>
+                </div>
+
+                <h3>How to Use This Guide</h3>
+                <p>Start with <strong>Foundation</strong> to understand how weight loss works. Then move through each section in order. Click any section heading to expand and learn more.</p>
+
+                <div class="diagram">
+                    <h3>Your Journey Map</h3>
+                    <div class="flow-item">Foundation: Understand Your Body</div>
+                    <div class="arrow">↓</div>
+                    <div class="flow-item">Challenges: Identify What Makes It Harder</div>
+                    <div class="arrow">↓</div>
+                    <div class="flow-item">Nutrition: What & When to Eat</div>
+                    <div class="arrow">↓</div>
+                    <div class="flow-item">Lifestyle: Exercise, Sleep, Stress</div>
+                    <div class="arrow">↓</div>
+                    <div class="flow-item">Real Life: Flexibility & Sustainability</div>
+                    <div class="arrow">↓</div>
+                    <div class="flow-item">Action Plan: Your Next Steps</div>
+                </div>
+
+                <button class="btn" onclick="showSection('foundation')">Start Learning →</button>
+            </div>
+        </div>
+
+        <!-- FOUNDATION SECTION -->
+        <div id="foundation" class="section">
+            <div class="card">
+                <h2>Foundation: How Weight Loss Actually Works</h2>
+                
+                <div class="expandable">
+                    <div class="expandable-header">The Energy Balance Equation</div>
+                    <div class="expandable-content">
+                        <p>At its core, weight loss is about energy balance:</p>
+                        <ul>
+                            <li><strong>Calories In &lt; Calories Out</strong> = Weight Loss</li>
+                            <li><strong>Calories In = Calories Out</strong> = Maintenance</li>
+                            <li><strong>Calories In &gt; Calories Out</strong> = Weight Gain</li>
+                        </ul>
+                        
+                        <p><strong>One kilogram of fat</strong> = approximately 7,700 calories</p>
+                        <p><strong>To lose 0.5 kg per week:</strong> Need ~550 calorie daily deficit</p>
+                        
+                        <div class="warning">
+                            <strong>But it's not always this simple...</strong>
+                            <p>If you have metabolic challenges (insulin resistance, PCOS, thyroid issues) or chronic stress, your body doesn't follow this formula as predictably. That's what this guide addresses.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="expandable">
+                    <div class="expandable-header">Understanding Your Metabolism</div>
+                    <div class="expandable-content">
+                        <h4>What is Metabolism?</h4>
+                        <p>Your metabolism is the sum of all chemical processes that convert food into energy. It has several components:</p>
+                        
+                        <table>
+                            <tr>
+                                <th>Component</th>
+                                <th>% of Total</th>
+                                <th>What It Means</th>
+                            </tr>
+                            <tr>
+                                <td><strong>BMR</strong> (Basal Metabolic Rate)</td>
+                                <td>60-70%</td>
+                                <td>Energy to keep you alive (breathing, heart beating, cells functioning)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Physical Activity</strong></td>
+                                <td>15-30%</td>
+                                <td>Exercise and daily movement</td>
+                            </tr>
+                            <tr>
+                                <td><strong>TEF</strong> (Thermic Effect of Food)</td>
+                                <td>10%</td>
+                                <td>Energy to digest and process food</td>
+                            </tr>
+                            <tr>
+                                <td><strong>NEAT</strong> (Non-Exercise Activity)</td>
+                                <td>5-15%</td>
+                                <td>Fidgeting, standing, daily activities</td>
+                            </tr>
+                        </table>
+
+                        <h4>Why Some People Have "Slower" Metabolism</h4>
+                        <p>Your metabolism can be affected by:</p>
+                        <ul>
+                            <li><strong>Muscle mass:</strong> Muscle burns more calories at rest than fat</li>
+                            <li><strong>Age:</strong> Metabolism slows about 2% per decade after 30</li>
+                            <li><strong>Hormones:</strong> Thyroid, insulin, cortisol all affect metabolism</li>
+                            <li><strong>Genetics:</strong> Some variation is inherited</li>
+                            <li><strong>Dieting history:</strong> Repeated extreme dieting can slow metabolism</li>
+                        </ul>
+
+                        <div class="highlight">
+                            <h3>Good News</h3>
+                            <p>You can improve your metabolism through:</p>
+                            <ul>
+                                <li>Building muscle (strength training)</li>
+                                <li>Eating enough protein (highest thermic effect)</li>
+                                <li>Consistent meal timing (body adapts, optimizes)</li>
+                                <li>Quality sleep (repairs and resets)</li>
+                                <li>Managing stress (lowers cortisol)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="expandable">
+                    <div class="expandable-header">The Three Macronutrients</div>
+                    <div class="expandable-content">
+                        <h4>Protein</h4>
+                        <p><strong>4 calories per gram</strong></p>
+                        <p><strong>What it does:</strong></p>
+                        <ul>
+                            <li>Builds and repairs muscle</li>
+                            <li>Makes hormones and enzymes</li>
+                            <li>Keeps you full longer (highest satiety)</li>
+                            <li>Stabilizes blood sugar</li>
+                            <li>Burns calories during digestion (25-30% of protein calories used just to digest it!)</li>
+                        </ul>
+                        <p><strong>Why it's critical for weight loss:</strong> High protein preserves muscle while losing fat, keeps you satisfied, and actually burns more calories during digestion.</p>
+                        <p><strong>How much:</strong> For sustainable weight loss: 1.6-2.0g per kg body weight. For someone who is 84kg, that's 135-168g per day.</p>
+
+                        <h4>Carbohydrates</h4>
+                        <p><strong>4 calories per gram</strong></p>
+                        <p><strong>What they do:</strong></p>
+                        <ul>
+                            <li>Provide quick energy for brain and muscles</li>
+                            <li>Fuel workouts</li>
+                            <li>Replenish glycogen stores</li>
+                        </ul>
+                        <p><strong>The key difference:</strong> Simple carbs (white bread, sugar) vs Complex carbs (whole grains, vegetables)</p>
+                        <ul>
+                            <li><strong>Simple carbs:</strong> Digest quickly, spike blood sugar fast</li>
+                            <li><strong>Complex carbs:</strong> Digest slowly, stable energy</li>
+                        </ul>
+                        <p><strong>Why some bodies need less:</strong> If you have insulin resistance, your body doesn't handle carbs as well. Moderate intake (35-45% of calories) works better than high-carb diets.</p>
+
+                        <h4>Fats</h4>
+                        <p><strong>9 calories per gram</strong> (more than double protein/carbs!)</p>
+                        <p><strong>What they do:</strong></p>
+                        <ul>
+                            <li>Make hormones (you NEED fat for this!)</li>
+                            <li>Absorb vitamins A, D, E, K</li>
+                            <li>Provide sustained energy</li>
+                            <li>Keep you satisfied</li>
+                        </ul>
+                        <p><strong>Why you need enough:</strong> Too low fat (below 20% of calories) can disrupt hormone production and leave you constantly hungry.</p>
+                        <p><strong>Best sources:</strong> Olive oil, nuts, seeds, fatty fish, avocado, ghee (moderate amounts)</p>
+                    </div>
+                </div>
+
+                <div class="expandable">
+                    <div class="expandable-header">Why Your Past Diets Didn't Work</div>
+                    <div class="expandable-content">
+                        <h4>Common Diet Mistakes:</h4>
+                        
+                        <h4>1. Too Extreme (Crash Dieting)</h4>
+                        <p><strong>What happens:</strong> Eat 1000 calories or less per day</p>
+                        <p><strong>Result:</strong></p>
+                        <ul>
+                            <li>Rapid initial weight loss (mostly water + muscle)</li>
+                            <li>Metabolism slows dramatically</li>
+                            <li>Constant hunger, low energy</li>
+                            <li>When you return to normal eating: rapid regain + more</li>
+                        </ul>
+                        
+                        <h4>2. Low Protein</h4>
+                        <p><strong>What happens:</strong> Focus on reducing calories but protein intake drops too</p>
+                        <p><strong>Result:</strong></p>
+                        <ul>
+                            <li>Lose muscle along with fat</li>
+                            <li>Metabolism slows (less muscle = fewer calories burned)</li>
+                            <li>Always hungry (protein is most filling)</li>
+                            <li>Harder to maintain weight loss</li>
+                        </ul>
+
+                        <h4>3. Inconsistent Timing</h4>
+                        <p><strong>What happens:</strong> Eat at different times every day</p>
+                        <p><strong>Result:</strong></p>
+                        <ul>
+                            <li>Body doesn't know when food is coming</li>
+                            <li>Hormones (insulin, cortisol, ghrelin) get confused</li>
+                            <li>Especially problematic if you have metabolic challenges</li>
+                        </ul>
+
+                        <h4>4. Ignoring Sleep & Stress</h4>
+                        <p><strong>What happens:</strong> Focus only on diet and exercise, ignore lifestyle</p>
+                        <p><strong>Result:</strong></p>
+                        <ul>
+                            <li>Poor sleep worsens insulin resistance</li>
+                            <li>High stress raises cortisol (promotes belly fat storage)</li>
+                            <li>Fighting an uphill battle</li>
+                        </ul>
+
+                        <div class="highlight">
+                            <h3>The Sustainable Approach</h3>
+                            <p>This guide teaches you:</p>
+                            <ul>
+                                <li>Modest deficit (not extreme)</li>
+                                <li>High protein (preserve muscle)</li>
+                                <li>Consistent timing (optimize hormones)</li>
+                                <li>Lifestyle factors (sleep, stress, exercise timing)</li>
+                                <li>Flexibility for real life (social events, weekends)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn" onclick="showSection('challenges')">Next: Understanding Your Body's Challenges →</button>
+            </div>
+        </div>
+
+        <!-- CHALLENGES SECTION -->
+        <div id="challenges" class="section">
+            <div class="card">
+                <h2>Understanding Your Body's Challenges</h2>
+                <p>Some factors make weight loss harder. Understanding them helps you work WITH your body, not against it.</p>
+
+                <div class="expandable">
+                    <div class="expandable-header">Insulin Resistance</div>
+                    <div class="expandable-content">
+                        <h4>What is Insulin?</h4>
+                        <p>Insulin is a hormone your pancreas makes. Its job: move sugar from blood into cells for energy.</p>
+
+                        <h4>Normal Process:</h4>
+                        <div class="diagram">
+                            <div class="flow-item">Eat Carbs</div>
+                            <div class="arrow">↓</div>
+                            <div class="flow-item">Blood Sugar Rises</div>
+                            <div class="arrow">↓</div>
+                            <div class="flow-item">Insulin Released</div>
+                            <div class="arrow">↓</div>
+                            <div class="flow-item">Cells Open, Sugar Enters</div>
+                            <div class="arrow">↓</div>
+                            <div class="flow-item">Blood Sugar Returns to Normal</div>
+                        </div>
+                        <p><strong>Timeline:</strong> 2-3 hours total</p>
+
+                        <h4>With Insulin Resistance:</h4>
+                        <div class="diagram">
+                            <div class="flow-item">Eat Carbs</div>
+                            <div class="arrow">↓</div>
+                            <div class="flow-item">Blood Sugar Rises High</div>
+                            <div class="arrow">↓</div>
+                            <div class="flow-item">Lots of Insulin Released</div>
+                            <div class="arrow">↓</div>
+                            <div class="flow-item">Cells Resist! Don't Open Well</div>
+                            <div class="arrow">↓</div>
+                            <div class="flow-item">Even MORE Insulin Needed</div>
+                            <div class="arrow">↓</div>
+                            <div class="flow-item">High Insulin Stays Elevated</div>
+                        </div>
+                        <p><strong>Timeline:</strong> 4-6 hours, insulin stays high</p>
+
+                        <h4>Why This Makes Weight Loss Hard:</h4>
+                        <ul>
+                            <li><strong>High insulin = Fat storage mode:</strong> Your body CANNOT burn fat when insulin is elevated</li>
+                            <li><strong>Constant hunger:</strong> Blood sugar spikes then crashes</li>
+                            <li><strong>Low energy:</strong> Cells not getting sugar efficiently</li>
+                            <li><strong>More cravings:</strong> Body wants quick energy</li>
+                        </ul>
+
+                        <div class="highlight">
+                            <h3>How to Improve Insulin Sensitivity</h3>
+                            <ul>
+                                <li><strong>Exercise (especially morning):</strong> Muscles absorb sugar without needing much insulin</li>
+                                <li><strong>Eat protein before carbs:</strong> Blunts blood sugar spike</li>
+                                <li><strong>Choose low glycemic foods:</strong> Slow, steady rise vs spike</li>
+                                <li><strong>Consistent meal timing:</strong> Body optimizes response</li>
+                                <li><strong>Lose weight:</strong> Creates positive feedback loop</li>
+                                <li><strong>Quality sleep:</strong> Poor sleep worsens resistance by 30%</li>
+                                <li><strong>Manage stress:</strong> High cortisol worsens resistance</li>
+                            </ul>
+                        </div>
+
+                        <div class="warning">
+                            <strong>Who has insulin resistance?</strong>
+                            <p>Very common! Risk factors: PCOS, family history of diabetes, excess belly fat, sedentary lifestyle, poor sleep, chronic stress, history of gestational diabetes.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="expandable">
+                    <div class="expandable-header">Stress & Cortisol</div>
+                    <div class="expandable-content">
+                        <h4>What is Cortisol?</h4>
+                        <p>Cortisol is your "stress hormone" made by adrenal glands.</p>
+
+                        <h4>Normal Cortisol Pattern:</h4>
+                        <p>Cortisol SHOULD follow a daily rhythm:</p>
+                        <ul>
+                            <li><strong>Morning (6-9 AM):</strong> HIGH (wakes you up, gives energy)</li>
+                            <li><strong>Throughout day:</strong> Gradually drops</li>
+                            <li><strong>Evening:</strong> LOW (allows sleep)</li>
+                        </ul>
+                        <p>This pattern is NORMAL and healthy!</p>
+
+                        <h4>Disrupted Cortisol (from chronic stress):</h4>
+                        <ul>
+                            <li>Stays elevated all day</li>
+                            <li>Spikes at wrong times (night when should be low)</li>
+                            <li>Never properly drops</li>
+                        </ul>
+
+                        <h4>Why High Cortisol Sabotages Weight Loss:</h4>
+                        <ul>
+                            <li><strong>Worsens insulin resistance:</strong> Makes cells less responsive to insulin</li>
+                            <li><strong>Promotes belly fat storage:</strong> Specifically visceral fat (the dangerous kind)</li>
+                            <li><strong>Increases appetite:</strong> Especially for sugary, fatty foods</li>
+                            <li><strong>Breaks down muscle:</strong> Uses muscle for energy instead of fat</li>
+                            <li><strong>Disrupts sleep:</strong> Can't fall asleep if cortisol is high</li>
+                        </ul>
+
+                        <h4>What Raises Cortisol Inappropriately:</h4>
+                        <ul>
+                            <li><strong>Chronic stress</strong> (work, relationships, financial)</li>
+                            <li><strong>Poor sleep</strong> (less than 7 hours, irregular schedule)</li>
+                            <li><strong>Intense exercise at night</strong> (should workout in morning)</li>
+                            <li><strong>Fasted intense workouts</strong> (body perceives as stress)</li>
+                            <li><strong>Extreme calorie restriction</strong> (body thinks it's starving)</li>
+                            <li><strong>Irregular meal timing</strong> (body uncertain about food availability)</li>
+                        </ul>
+
+                        <div class="highlight">
+                            <h3>How to Lower Cortisol</h3>
+                            <h4>TIMING</h4>
+                            <ul>
+                                <li><strong>Morning workouts:</strong> Work WITH natural cortisol peak</li>
+                                <li><strong>Consistent wake/sleep times:</strong> Regulates rhythm</li>
+                                <li><strong>Early dinner:</strong> Allows cortisol to drop before bed</li>
+                            </ul>
+
+                            <h4>STRESS MANAGEMENT</h4>
+                            <ul>
+                                <li><strong>Breathing exercises:</strong> 5-10 min daily (activates relaxation response)</li>
+                                <li><strong>Boundaries:</strong> Learn to say no, protect personal time</li>
+                                <li><strong>Physical activity:</strong> Moderate exercise LOWERS cortisol (intense overtraining raises it)</li>
+                                <li><strong>Social connection:</strong> Talk to friends, don't isolate</li>
+                            </ul>
+
+                            <h4>LIFESTYLE</h4>
+                            <ul>
+                                <li><strong>7-8 hours sleep:</strong> Non-negotiable</li>
+                                <li><strong>Dim lights at night:</strong> Helps cortisol drop naturally</li>
+                                <li><strong>No work stress before bed:</strong> Wind down 1-2 hours before sleep</li>
+                            </ul>
+                        </div>
+
+                        <div class="quote">
+                            "You cannot out-diet chronic stress. Managing cortisol is as important as managing your diet for sustainable weight loss."
+                        </div>
+                    </div>
+                </div>
+
+                <div class="expandable">
+                    <div class="expandable-header">PCOS & Hormonal Imbalances</div>
+                    <div class="expandable-content">
+                        <h4>What is PCOS?</h4>
+                        <p>Polycystic Ovary Syndrome - a hormonal disorder where insulin resistance triggers hormone imbalances.</p>
+
+                        <p><strong>The cascade:</strong></p>
+                        <div class="diagram">
+                            <div class="flow-item">Insulin Resistance</div>
+                            <div class="arrow">↓</div>
+                            <div class="flow-item">High Insulin Levels</div>
+                            <div class="arrow">↓</div>
+                            <div class="flow-item">Ovaries Produce Excess Testosterone</div>
+                            <div class="arrow">↓</div>
+                            <div class="flow-item">Symptoms: Irregular periods, facial hair, acne, weight gain</div>
+                        </div>
+
+                        <h4>Why PCOS Makes Weight Loss Harder:</h4>
+                        <ul>
+                            <li><strong>Severe insulin resistance:</strong> Even worse than typical insulin resistance</li>
+                            <li><strong>Hormone imbalances:</strong> Affect metabolism and appetite</li>
+                            <li><strong>Inflammation:</strong> Creates vicious cycle</li>
+                            <li><strong>Irregular periods:</strong> Hormonal fluctuations affect energy and cravings</li>
+                        </ul>
+
+                        <h4>The Good News:</h4>
+                        <p>Weight loss with PCOS IS possible when you:</p>
+                        <ul>
+                            <li>Address insulin resistance (primary focus)</li>
+                            <li>Time carbs strategically</li>
+                            <li>Prioritize protein</li>
+                            <li>Exercise at optimal times</li>
+                            <li>Manage stress and sleep</li>
+                        </ul>
+
+                        <div class="highlight">
+                            <h3>PCOS-Specific Strategies</h3>
+                            <ul>
+                                <li><strong>Higher protein:</strong> 35% of calories (vs 25% for non-PCOS)</li>
+                                <li><strong>Lower carbs:</strong> 35-40% of calories (vs 50% typical diet)</li>
+                                <li><strong>Morning workouts:</strong> Capitalize on high insulin sensitivity</li>
+                                <li><strong>Consistent timing:</strong> PCOS bodies especially need routine</li>
+                                <li><strong>Specific supplements:</strong> Inositol, vitamin D, omega-3</li>
+                                <li><strong>Anti-inflammatory foods:</strong> Reduce the inflammatory cascade</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="expandable">
+                    <div class="expandable-header">Your Circadian Rhythm (Body Clock)</div>
+                    <div class="expandable-content">
+                        <h4>What is Circadian Rhythm?</h4>
+                        <p>Your body's internal 24-hour clock that controls:</p>
+                        <ul>
+                            <li>Sleep-wake cycle</li>
+                            <li>Hormone release (cortisol, melatonin, growth hormone)</li>
+                            <li>Body temperature</li>
+                            <li><strong>Insulin sensitivity</strong> (KEY for weight loss!)</li>
+                            <li>Metabolism speed</li>
+                            <li>Digestion efficiency</li>
+                        </ul>
+
+                        <h4>Insulin Sensitivity Throughout the Day:</h4>
+                        <table>
+                            <tr>
+                                <th>Time</th>
+                                <th>Insulin Sensitivity</th>
+                                <th>Best For</th>
+                            </tr>
+                            <tr>
+                                <td>6-10 AM</td>
+                                <td>HIGHEST</td>
+                                <td>Post-workout breakfast with carbs</td>
+                            </tr>
+                            <tr>
+                                <td>12-3 PM</td>
+                                <td>HIGH</td>
+                                <td>Main lunch with moderate carbs</td>
+                            </tr>
+                            <tr>
+                                <td>6-8 PM</td>
+                                <td>MEDIUM</td>
+                                <td>Light dinner, fewer carbs</td>
+                            </tr>
+                            <tr>
+                                <td>9 PM+</td>
+                                <td>LOWEST</td>
+                                <td>Nothing (or very light if needed)</td>
+                            </tr>
+                        </table>
+
+                        <div class="warning">
+                            <strong>Important:</strong> The SAME meal eaten at 9 AM vs 9 PM produces a different insulin response. Morning = Better handled. Night = More likely stored as fat.
+                        </div>
+
+                        <h4>Why This Matters MORE with Metabolic Challenges:</h4>
+                        <p>If you have insulin resistance or PCOS:</p>
+                        <ul>
+                            <li>Your baseline insulin sensitivity is already compromised</li>
+                            <li>Eating at night = Double whammy (natural low sensitivity + your baseline resistance)</li>
+                            <li>Timing becomes even MORE critical</li>
+                        </ul>
+
+                        <div class="highlight">
+                            <h3>Optimizing Your Circadian Rhythm</h3>
+                            <ul>
+                                <li><strong>Consistent wake time:</strong> Same time daily (even weekends)</li>
+                                <li><strong>Morning light exposure:</strong> Within 30 min of waking (sets your clock)</li>
+                                <li><strong>Morning workouts:</strong> Align with natural cortisol peak</li>
+                                <li><strong>Consistent meal times:</strong> Body expects food at same times</li>
+                                <li><strong>Early dinner:</strong> By 7-7:30 PM latest</li>
+                                <li><strong>Dim lights after 8 PM:</strong> Allows melatonin production</li>
+                                <li><strong>Sleep by 10:30-11 PM:</strong> Optimal hormone reset</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn" onclick="showSection('nutrition')">Next: Nutrition Strategies →</button>
+            </div>
+        </div>
+
+        <!-- NUTRITION SECTION -->
+        <div id="nutrition" class="section">
+            <div class="card">
+                <h2>Nutrition for Sustainable Weight Loss</h2>
+                
+                <div class="expandable">
+                    <div class="expandable-header">Your Macro Targets</div>
+                    <div class="expandable-content">
+                        <h4>For Sustainable Weight Loss with Metabolic Challenges:</h4>
+                        
+                        <table>
+                            <tr>
+                                <th>Macro</th>
+                                <th>% of Calories</th>
+                                <th>Grams (at 1900 cal)</th>
+                                <th>Why This Amount</th>
+                            </tr>
+                            <tr>
+                                <td><strong>Protein</strong></td>
+                                <td>35%</td>
+                                <td>166g</td>
+                                <td>Preserves muscle, highest satiety, improves insulin sensitivity</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Carbs</strong></td>
+                                <td>40%</td>
+                                <td>190g</td>
+                                <td>Enough for energy/workouts, not so much it overwhelms insulin capacity</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Fats</strong></td>
+                                <td>25%</td>
+                                <td>53g</td>
+                                <td>Hormones, satiety, vitamin absorption</td>
+                            </tr>
+                        </table>
+
+                        <div class="warning">
+                            <strong>Compare to typical diet:</strong>
+                            <p>Standard diet: 15% protein / 55% carbs / 30% fat</p>
+                            <p>Your approach: 35% protein / 40% carbs / 25% fat</p>
+                            <p><strong>The difference:</strong> Much higher protein, moderate carbs. This ratio works better for insulin-resistant bodies.</p>
+                        </div>
+
+                        <h4>How to Hit These Targets:</h4>
+                        <p><strong>Protein at EVERY meal:</strong></p>
+                        <ul>
+                            <li>Breakfast: 60g (2 eggs + protein-rich base)</li>
+                            <li>Lunch: 60g (chicken/fish/dal + paneer)</li>
+                            <li>Dinner: 35g (lighter protein)</li>
+                            <li>Snacks: 11g (nuts, yogurt)</li>
+                        </ul>
+
+                        <p><strong>Carbs timed strategically:</strong></p>
+                        <ul>
+                            <li>Most at breakfast (post-workout) and lunch</li>
+                            <li>Light at dinner</li>
+                            <li>From low glycemic sources</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="expandable">
+                    <div class="expandable-header">Best Food Choices</div>
+                    <div class="expandable-content">
+                        <h4>Protein Sources (Prioritize These):</h4>
+                        <table>
+                            <tr>
+                                <th>Food</th>
+                                <th>Protein per 100g</th>
+                                <th>Notes</th>
+                            </tr>
+                            <tr>
+                                <td>Chicken breast</td>
+                                <td>31g</td>
+                                <td>Leanest, very high protein density</td>
+                            </tr>
+                            <tr>
+                                <td>Fish (white fish)</td>
+                                <td>20-25g</td>
+                                <td>Lean, omega-3 if fatty fish</td>
+                            </tr>
+                            <tr>
+                                <td>Eggs</td>
+                                <td>6g per egg</td>
+                                <td>Complete protein, very bioavailable</td>
+                            </tr>
+                            <tr>
+                                <td>Paneer</td>
+                                <td>18g</td>
+                                <td>Vegetarian complete protein</td>
+                            </tr>
+                            <tr>
+                                <td>Greek yogurt</td>
+                                <td>10g</td>
+                                <td>Protein + probiotics</td>
+                            </tr>
+                            <tr>
+                                <td>Dal (cooked)</td>
+                                <td>7-9g</td>
+                                <td>Combine with grains for complete protein</td>
+                            </tr>
+                        </table>
+
+                        <h4>Carbohydrates (Choose Low Glycemic Index):</h4>
+                        <p><strong>Glycemic Index (GI):</strong> How fast food raises blood sugar (0-100 scale)</p>
+                        <ul>
+                            <li><strong>Low GI (55 or below):</strong> Slow, steady rise - BEST for insulin-resistant bodies</li>
+                            <li><strong>Medium GI (56-69):</strong> Moderate rise - use moderately</li>
+                            <li><strong>High GI (70+):</strong> Fast spike - avoid or eat very small amounts</li>
+                        </ul>
+
+                        <table>
+                            <tr>
+                                <th>Food</th>
+                                <th>GI</th>
+                                <th>Recommendation</th>
+                            </tr>
+                            <tr style="background: #e8f5e9;">
+                                <td>Ragi (finger millet)</td>
+                                <td>55</td>
+                                <td><strong>BEST CHOICE</strong> - Lowest GI grain</td>
+                            </tr>
+                            <tr style="background: #e8f5e9;">
+                                <td>Oats</td>
+                                <td>55</td>
+                                <td><strong>EXCELLENT</strong> - High fiber, sustaining</td>
+                            </tr>
+                            <tr style="background: #e8f5e9;">
+                                <td>Quinoa</td>
+                                <td>53</td>
+                                <td><strong>EXCELLENT</strong> - Protein + carbs</td>
+                            </tr>
+                            <tr style="background: #e8f5e9;">
+                                <td>Dal/Lentils</td>
+                                <td>25-35</td>
+                                <td><strong>EXCELLENT</strong> - Very low GI</td>
+                            </tr>
+                            <tr style="background: #fff9c4;">
+                                <td>Brown rice</td>
+                                <td>68</td>
+                                <td>MODERATE - Small portions</td>
+                            </tr>
+                            <tr style="background: #fff9c4;">
+                                <td>Whole wheat</td>
+                                <td>69</td>
+                                <td>MODERATE - Better mixed with millet flours</td>
+                            </tr>
+                            <tr style="background: #ffebee;">
+                                <td>White rice</td>
+                                <td>73</td>
+                                <td>LIMIT - Spikes quickly</td>
+                            </tr>
+                            <tr style="background: #ffebee;">
+                                <td>White bread</td>
+                                <td>75</td>
+                                <td>AVOID - Refined, spikes fast</td>
+                            </tr>
+                            <tr style="background: #ffebee;">
+                                <td>Potato</td>
+                                <td>78</td>
+                                <td>LIMIT - Use sweet potato instead</td>
+                            </tr>
+                        </table>
+
+                        <h4>Healthy Fats (Measure Portions!):</h4>
+                        <p><strong>Remember:</strong> 9 calories per gram - calorie-dense!</p>
+                        <ul>
+                            <li><strong>Omega-3 rich:</strong> Fatty fish, walnuts, flax seeds, chia seeds (anti-inflammatory)</li>
+                            <li><strong>Monounsaturated:</strong> Olive oil, avocado, almonds (heart healthy)</li>
+                            <li><strong>Saturated (moderate):</strong> Ghee, coconut oil (hormone support, cooking)</li>
+                            <li><strong>AVOID:</strong> Trans fats, excessive omega-6 oils</li>
+                        </ul>
+
+                        <h4>Vegetables (Unlimited!):</h4>
+                        <p><strong>These are "free" foods - eat as much as you want:</strong></p>
+                        <ul>
+                            <li>Leafy greens (spinach, methi, kale)</li>
+                            <li>Cruciferous (broccoli, cauliflower, cabbage)</li>
+                            <li>Low-starch (cucumber, tomatoes, bell peppers, zucchini)</li>
+                            <li>Fiber-rich (okra, bottle gourd, bitter gourd)</li>
+                        </ul>
+                        <p><strong>Why:</strong> Very low calorie, high volume, lots of fiber, vitamins, minerals</p>
+                    </div>
+                </div>
+
+                <div class="expandable">
+                    <div class="expandable-header">Meal Timing Strategy</div>
+                    <div class="expandable-content">
+                        <h4>Why Timing Matters:</h4>
+                        <p>Remember: Insulin sensitivity is HIGHEST in morning, LOWEST at night.</p>
+                        <p>Strategy: Time your carbs when your body handles them best!</p>
+
+                        <h4>Ideal Daily Pattern:</h4>
+
+                        <table>
+                            <tr>
+                                <th>Time</th>
+                                <th>Meal</th>
+                                <th>Macros</th>
+                                <th>Strategy</th>
+                            </tr>
+                            <tr>
+                                <td>7:30 AM</td>
+                                <td>Wake up</td>
+                                <td>-</td>
+                                <td>Jeera/methi water, soaked almonds</td>
+                            </tr>
+                            <tr>
+                                <td>8:15 AM</td>
+                                <td>Pre-workout</td>
+                                <td>Small carbs</td>
+                                <td>Banana + few nuts (quick energy)</td>
+                            </tr>
+                            <tr>
+                                <td>9:00-10:30 AM</td>
+                                <td>WORKOUT</td>
+                                <td>-</td>
+                                <td>Exercise when insulin sensitivity HIGH</td>
+                            </tr>
+                            <tr>
+                                <td>10:30 AM</td>
+                                <td><strong>Breakfast</strong></td>
+                                <td>60p / 56c / 19f</td>
+                                <td>POST-WORKOUT! Carbs go to muscle, not fat. This is your LARGEST carb meal.</td>
+                            </tr>
+                            <tr>
+                                <td>2:30 PM</td>
+                                <td><strong>Lunch</strong></td>
+                                <td>60p / 85c / 20f</td>
+                                <td>Insulin sensitivity still good. Moderate-high carbs OK.</td>
+                            </tr>
+                            <tr>
+                                <td>7:00 PM</td>
+                                <td><strong>Dinner</strong></td>
+                                <td>35p / 40c / 10f</td>
+                                <td>LIGHT! Lower carbs (sensitivity drops). Focus on protein + vegetables.</td>
+                            </tr>
+                            <tr>
+                                <td>10:30 PM</td>
+                                <td>Sleep</td>
+                                <td>-</td>
+                                <td>Body repairs, hormones reset</td>
+                            </tr>
+                        </table>
+
+                        <div class="highlight">
+                            <h3>Key Principles:</h3>
+                            <ul>
+                                <li><strong>Same times daily:</strong> Your body optimizes when it knows when food is coming</li>
+                                <li><strong>Largest carb meal post-workout:</strong> Breakfast after morning workout</li>
+                                <li><strong>Progressively lighter through day:</strong> Carbs highest at breakfast, medium at lunch, low at dinner</li>
+                                <li><strong>Early dinner:</strong> By 7-7:30 PM, gives 3-4 hour gap before sleep</li>
+                                <li><strong>Consistent!</strong> Even weekends (your body doesn't know it's Saturday)</li>
+                            </ul>
+                        </div>
+
+                        <h4>Eating Order (Within Each Meal):</h4>
+                        <p>This simple trick can reduce blood sugar spike by 30-40%!</p>
+                        <ol>
+                            <li><strong>Salad/Vegetables FIRST</strong> (fiber coats stomach, slows absorption)</li>
+                            <li><strong>Protein SECOND</strong> (triggers satiety hormones, slows stomach emptying)</li>
+                            <li><strong>Carbs LAST</strong> (by this point, absorption is already slowed)</li>
+                        </ol>
+
+                        <div class="warning">
+                            <strong>Example at lunch:</strong>
+                            <p><strong>Wrong order:</strong> Eat roti first, then chicken, then salad = Blood sugar spikes high</p>
+                            <p><strong>Right order:</strong> Salad → Chicken → Then roti = Blood sugar rise is moderate, controlled</p>
+                            <p>SAME FOODS, different order, different insulin response!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="expandable">
+                    <div class="expandable-header">Portion Control Made Simple</div>
+                    <div class="expandable-content">
+                        <h4>Using Your Hand as a Guide:</h4>
+                        
+                        <p><strong>Protein:</strong></p>
+                        <ul>
+                            <li>1 palm-sized piece = ~30g protein</li>
+                            <li>Breakfast: 2 palms (60g from eggs + paneer/dal)</li>
+                            <li>Lunch: 2 palms (60g from chicken + dal)</li>
+                            <li>Dinner: 1 palm (35g from light protein)</li>
+                        </ul>
+
+                        <p><strong>Carbs (grains):</strong></p>
+                        <ul>
+                            <li>1 cupped handful = ~25-30g carbs</li>
+                            <li>2 rotis = ~30g carbs</li>
+                            <li>1/2 cup cooked rice = ~25g carbs</li>
+                        </ul>
+
+                        <p><strong>Fats:</strong></p>
+                        <ul>
+                            <li>1 thumb = ~1 tablespoon = ~14g fat</li>
+                            <li>Daily: 3-4 thumbs total (cooking + nuts)</li>
+                        </ul>
+
+                        <p><strong>Vegetables:</strong></p>
+                        <ul>
+                            <li>2 fists per meal minimum</li>
+                            <li>More is always better!</li>
+                        </ul>
+
+                        <h4>Volume vs Calorie Density:</h4>
+                        <p>Understanding this helps you feel full while losing weight.</p>
+
+                        <table>
+                            <tr>
+                                <th>400 Calories Looks Like:</th>
+                                <th>Volume</th>
+                                <th>Satiety</th>
+                            </tr>
+                            <tr>
+                                <td>100g almonds</td>
+                                <td>Small handful</td>
+                                <td>Medium</td>
+                            </tr>
+                            <tr>
+                                <td>2 samosas</td>
+                                <td>Fits in palm</td>
+                                <td>Low</td>
+                            </tr>
+                            <tr>
+                                <td>4 eggs + 2 cups vegetables</td>
+                                <td>Large plate</td>
+                                <td>Very High</td>
+                            </tr>
+                            <tr>
+                                <td>2 cups dal + 1 cup rice + vegetables</td>
+                                <td>HUGE plate</td>
+                                <td>Very High</td>
+                            </tr>
+                        </table>
+
+                        <div class="highlight">
+                            <h3>Strategy for Fullness:</h3>
+                            <ul>
+                                <li><strong>Build each meal around:</strong> High protein + High volume vegetables</li>
+                                <li><strong>Add moderate carbs</strong> (low GI sources)</li>
+                                <li><strong>Add measured fats</strong> (calorie-dense, so measure!)</li>
+                                <li><strong>Result:</strong> Large, satisfying plate that hits your targets</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn" onclick="showSection('lifestyle')">Next: Lifestyle Strategies →</button>
+            </div>
+        </div>
+
+        <!-- LIFESTYLE SECTION -->
+        <div id="lifestyle" class="section">
+            <div class="card">
+                <h2>Lifestyle: Exercise, Sleep & Stress</h2>
+                <p>These factors matter as much as nutrition for sustainable weight loss.</p>
+
+                <div class="expandable">
+                    <div class="expandable-header">Exercise Timing & Type</div>
+                    <div class="expandable-content">
+                        <h4>Why Morning Workouts Are Best:</h4>
+                        <ul>
+                            <li><strong>Insulin sensitivity is HIGHEST in morning:</strong> Your body uses nutrients optimally</li>
+                            <li><strong>Works WITH cortisol rhythm:</strong> Cortisol naturally peaks 7-9 AM (good for energy)</li>
+                            <li><strong>Post-workout meal optimized:</strong> Breakfast becomes your prime carb-loading window</li>
+                            <li><strong>Won't disrupt sleep:</strong> Unlike evening workouts which keep you wired</li>
+                            <li><strong>Consistency easier:</strong> Get it done before day gets busy</li>
+                        </ul>
+
+                        <h4>Best Exercise Types for Weight Loss:</h4>
+                        
+                        <p><strong>1. Strength Training (2-3x per week)</strong></p>
+                        <ul>
+                            <li>Builds muscle = Higher metabolism at rest</li>
+                            <li>Improves insulin sensitivity more than cardio</li>
+                            <li>Examples: Pilates, weights, resistance bands, bodyweight exercises</li>
+                        </ul>
+
+                        <p><strong>2. Moderate Cardio (2-3x per week)</strong></p>
+                        <ul>
+                            <li>Burns calories, improves heart health</li>
+                            <li>Examples: Brisk walking, swimming, cycling, badminton</li>
+                            <li>Duration: 30-60 minutes</li>
+                        </ul>
+
+                        <p><strong>3. Daily Movement (Every day)</strong></p>
+                        <ul>
+                            <li>Walking, stairs, general activity</li>
+                            <li>Doesn't spike cortisol</li>
+                            <li>Aids digestion, mood</li>
+                        </ul>
+
+                        <h4>Ideal Weekly Schedule:</h4>
+                        <table>
+                            <tr>
+                                <th>Day</th>
+                                <th>Workout (9-10:30 AM)</th>
+                                <th>Evening</th>
+                            </tr>
+                            <tr>
+                                <td>Monday</td>
+                                <td>Rest or light walk</td>
+                                <td>Light walk if desired</td>
+                            </tr>
+                            <tr>
+                                <td>Tuesday</td>
+                                <td>Cardio (badminton/cycling)</td>
+                                <td>Gentle stretch</td>
+                            </tr>
+                            <tr>
+                                <td>Wednesday</td>
+                                <td>Strength (Pilates/weights)</td>
+                                <td>Walk</td>
+                            </tr>
+                            <tr>
+                                <td>Thursday</td>
+                                <td>Cardio</td>
+                                <td>Gentle stretch</td>
+                            </tr>
+                            <tr>
+                                <td>Friday</td>
+                                <td>Strength</td>
+                                <td>Walk</td>
+                            </tr>
+                            <tr>
+                                <td>Saturday</td>
+                                <td>Cardio or active rest</td>
+                                <td>Social time</td>
+                            </tr>
+                            <tr>
+                                <td>Sunday</td>
+                                <td>Rest</td>
+                                <td>Gentle walk, cooking project</td>
+                            </tr>
+                        </table>
+
+                        <div class="warning">
+                            <strong>Avoid:</strong>
+                            <ul>
+                                <li>Intense workouts after 6 PM (raises cortisol when should be dropping)</li>
+                                <li>Fasted intense workouts (cortisol spike, muscle breakdown)</li>
+                                <li>Overtraining (more than 6 days intense exercise - raises cortisol chronically)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="expandable">
+                    <div class="expandable-header">Sleep: The Missing Weight Loss Factor</div>
+                    <div class="expandable-content">
+                        <h4>Why Sleep is Non-Negotiable:</h4>
+                        <p><strong>Even ONE night of poor sleep:</strong></p>
+                        <ul>
+                            <li>Insulin resistance worsens by 30%</li>
+                            <li>Ghrelin (hunger hormone) increases 15%</li>
+                            <li>Leptin (fullness hormone) decreases 15%</li>
+                            <li>Cortisol stays elevated next day</li>
+                            <li>Cravings for sugar/fat increase</li>
+                        </ul>
+
+                        <p><strong>Chronic poor sleep (less than 7 hours regularly):</strong></p>
+                        <ul>
+                            <li>Makes weight loss 55% harder (research-backed!)</li>
+                            <li>Lose more muscle, less fat (bad composition)</li>
+                            <li>Metabolism slows</li>
+                            <li>Always hungry</li>
+                        </ul>
+
+                        <h4>Sleep Optimization Routine:</h4>
+
+                        <p><strong>EVENING WIND-DOWN (8-10 PM):</strong></p>
+                        <ul>
+                            <li><strong>8 PM:</strong> Dim lights, stop intense activities</li>
+                            <li><strong>8:30 PM:</strong> No more screens (or use blue light filter)</li>
+                            <li><strong>9 PM:</strong> Relaxation activities (reading, stretching, family time)</li>
+                            <li><strong>9:30 PM:</strong> Prepare for tomorrow (lay out clothes, prep bag)</li>
+                        </ul>
+
+                        <p><strong>PRE-SLEEP ROUTINE (10-10:30 PM):</strong></p>
+                        <ul>
+                            <li>Warm shower/bath</li>
+                            <li>Skincare routine</li>
+                            <li>Magnesium supplement (200-400mg, helps sleep)</li>
+                            <li><strong>Breathing exercise</strong> (4-7-8 method):
+                                <ul>
+                                    <li>Inhale through nose: 4 counts</li>
+                                    <li>Hold: 7 counts</li>
+                                    <li>Exhale through mouth: 8 counts</li>
+                                    <li>Repeat 8 times</li>
+                                </ul>
+                            </li>
+                            <li>Read physical book (not phone!) for 15-20 min</li>
+                        </ul>
+
+                        <p><strong>SLEEP ENVIRONMENT:</strong></p>
+                        <ul>
+                            <li><strong>Total darkness:</strong> Blackout curtains or eye mask</li>
+                            <li><strong>Cool temperature:</strong> 18-22°C (65-72°F)</li>
+                            <li><strong>Quiet:</strong> Earplugs or white noise if needed</li>
+                            <li><strong>Phone:</strong> In another room OR at minimum, face down, silent, far from bed</li>
+                        </ul>
+
+                        <p><strong>TARGET: 10:30-11 PM lights out, 7:30 AM wake = 8-8.5 hours</strong></p>
+
+                        <div class="highlight">
+                            <h3>Sleep Non-Negotiables</h3>
+                            <ul>
+                                <li><strong>Consistent schedule:</strong> Same bedtime/wake time (even weekends!)</li>
+                                <li><strong>7-8 hours minimum:</strong> Not 6, not 6.5 - actual 7-8 hours</li>
+                                <li><strong>Dark & cool:</strong> Your body needs this to produce melatonin</li>
+                                <li><strong>No screens 1 hour before bed:</strong> Blue light blocks melatonin</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="expandable">
+                    <div class="expandable-header">Stress Management Strategies</div>
+                    <div class="expandable-content">
+                        <h4>Quick Stress Reduction Techniques:</h4>
+
+                        <p><strong>1. Box Breathing (5 minutes, anytime)</strong></p>
+                        <ul>
+                            <li>Inhale: 4 counts</li>
+                            <li>Hold: 4 counts</li>
+                            <li>Exhale: 4 counts</li>
+                            <li>Hold: 4 counts</li>
+                            <li>Repeat 10 times</li>
+                        </ul>
+                        <p>Use: Before stressful meeting, when feeling anxious, before bed</p>
+
+                        <p><strong>2. 5-Minute Morning Routine</strong></p>
+                        <ul>
+                            <li>Don't check phone immediately</li>
+                            <li>Drink water</li>
+                            <li>3 deep breaths</li>
+                            <li>Think of 3 things you're grateful for</li>
+                            <li>Sets calm tone for entire day</li>
+                        </ul>
+
+                        <p><strong>3. Setting Boundaries</strong></p>
+                        <ul>
+                            <li><strong>Work hours:</strong> Set clear end time (e.g., 6 PM)</li>
+                            <li><strong>No work emails after 7 PM:</strong> Phone on Do Not Disturb</li>
+                            <li><strong>Learn to say no:</strong> You can't do everything</li>
+                            <li><strong>Protect personal time:</strong> Schedule it like you would work</li>
+                        </ul>
+
+                        <p><strong>4. Physical Activity</strong></p>
+                        <ul>
+                            <li>Moderate exercise LOWERS cortisol</li>
+                            <li>Walking, yoga, stretching especially good</li>
+                            <li>Even 10-minute walk helps</li>
+                        </ul>
+
+                        <p><strong>5. Social Connection</strong></p>
+                        <ul>
+                            <li>Talk to friends/family</li>
+                            <li>Don't isolate when stressed</li>
+                            <li>Laughter genuinely lowers cortisol</li>
+                        </ul>
+
+                        <h4>When Stress Eating Happens:</h4>
+                        <p><strong>The pattern:</strong> Stressed → Eat comfort food → Feel guilty → More stress</p>
+
+                        <p><strong>Breaking the cycle:</strong></p>
+                        <ul>
+                            <li><strong>Pause before eating:</strong> Wait 10 minutes, drink water</li>
+                            <li><strong>Ask yourself:</strong> "Am I hungry or stressed?"</li>
+                            <li><strong>If stressed:</strong> Try breathing exercise first</li>
+                            <li><strong>If still want food:</strong> Choose protein-rich snack (keeps you full, won't spike blood sugar)</li>
+                            <li><strong>Examples:</strong> Boiled eggs, Greek yogurt, nuts, chaas</li>
+                        </ul>
+
+                        <div class="highlight">
+                            <h3>Stress Audit</h3>
+                            <p>If weight loss stalls despite good diet:</p>
+                            <ul>
+                                <li>Are you sleeping 7-8 hours consistently?</li>
+                                <li>Is work stress chronic (not just occasional)?</li>
+                                <li>Do you have daily relaxation time?</li>
+                                <li>Are you overtraining (exercising too hard/too often)?</li>
+                            </ul>
+                            <p>Addressing stress might be THE factor that unlocks progress.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="expandable">
+                    <div class="expandable-header">Supplements That Help</div>
+                    <div class="expandable-content">
+                        <h4>Core Supplements for Weight Loss with Metabolic Challenges:</h4>
+
+                        <p><strong>1. Inositol (Myo-Inositol + D-Chiro-Inositol)</strong></p>
+                        <ul>
+                            <li><strong>What it does:</strong> Improves insulin sensitivity, helps cells respond to insulin better</li>
+                            <li><strong>Dosage:</strong> 2000-4000mg myo-inositol + 50-100mg d-chiro daily (40:1 ratio)</li>
+                            <li><strong>When:</strong> Split dose - half morning, half evening</li>
+                            <li><strong>Who needs it:</strong> Anyone with insulin resistance, PCOS</li>
+                        </ul>
+
+                        <p><strong>2. Vitamin D3</strong></p>
+                        <ul>
+                            <li><strong>What it does:</strong> Improves insulin sensitivity, boosts energy, reduces inflammation</li>
+                            <li><strong>Dosage:</strong> 2000-4000 IU daily (get blood test - many people need more)</li>
+                            <li><strong>When:</strong> Morning with breakfast (fat-soluble, needs fat to absorb)</li>
+                            <li><strong>Who needs it:</strong> Most people (80%+ have low D)</li>
+                        </ul>
+
+                        <p><strong>3. Omega-3 (Fish Oil or Algae Oil)</strong></p>
+                        <ul>
+                            <li><strong>What it does:</strong> Reduces inflammation, improves insulin sensitivity</li>
+                            <li><strong>Dosage:</strong> 1000-2000mg EPA+DHA daily</li>
+                            <li><strong>When:</strong> With lunch or dinner (fat-soluble)</li>
+                            <li><strong>Who needs it:</strong> Anyone not eating fatty fish 2-3x/week</li>
+                        </ul>
+
+                        <p><strong>4. Magnesium</strong></p>
+                        <ul>
+                            <li><strong>What it does:</strong> Improves insulin sensitivity, better sleep, reduces cravings</li>
+                            <li><strong>Dosage:</strong> 200-400mg daily</li>
+                            <li><strong>Best form:</strong> Magnesium glycinate (doesn't cause diarrhea)</li>
+                            <li><strong>When:</strong> 1 hour before bed (helps sleep!)</li>
+                        </ul>
+
+                        <h4>Supplement Schedule:</h4>
+                        <table>
+                            <tr>
+                                <th>Time</th>
+                                <th>Supplements</th>
+                            </tr>
+                            <tr>
+                                <td>Morning (with breakfast)</td>
+                                <td>Vitamin D, Inositol (half dose), B-Complex</td>
+                            </tr>
+                            <tr>
+                                <td>Lunch/Dinner</td>
+                                <td>Omega-3</td>
+                            </tr>
+                            <tr>
+                                <td>Evening (with dinner)</td>
+                                <td>Inositol (half dose)</td>
+                            </tr>
+                            <tr>
+                                <td>Before bed (1 hour before)</td>
+                                <td>Magnesium</td>
+                            </tr>
+                        </table>
+
+                        <div class="warning">
+                            <strong>Important:</strong>
+                            <ul>
+                                <li>Start one supplement at a time (wait 1 week between additions)</li>
+                                <li>Get blood tests for Vitamin D (know your baseline)</li>
+                                <li>Quality matters - buy from reputable brands</li>
+                                <li>Tell your doctor if you're on any medications</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn" onclick="showSection('flexibility')">Next: Real Life Flexibility →</button>
+            </div>
+        </div>
+
+        <!-- FLEXIBILITY SECTION -->
+        <div id="flexibility" class="section">
+            <div class="card">
+                <h2>Real Life: Flexibility & Sustainability</h2>
+                <p>How to maintain progress while living your actual life.</p>
+
+                <div class="expandable">
+                    <div class="expandable-header">Weekend Flexibility Strategy</div>
+                    <div class="expandable-content">
+                        <h4>The Zig-Zag Calorie Approach:</h4>
+                        <p>Instead of same calories every day, vary by day of week while keeping weekly average on target.</p>
+
+                        <h4>Why This Works:</h4>
+                        <ul>
+                            <li><strong>Prevents metabolic adaptation:</strong> Body doesn't "get used to" low calories</li>
+                            <li><strong>Allows social life:</strong> Can enjoy weekend meals without guilt</li>
+                            <li><strong>Psychologically sustainable:</strong> Something to look forward to</li>
+                            <li><strong>Still creates weekly deficit:</strong> Weight loss continues</li>
+                        </ul>
+
+                        <h4>The Math:</h4>
+                        <p><strong>Standard approach:</strong> 1900 calories × 7 days = 13,300 calories/week</p>
+
+                        <p><strong>Zig-zag approach:</strong></p>
+                        <ul>
+                            <li>Monday-Thursday (4 days): 1750 calories/day = 7,000 calories</li>
+                            <li>Friday-Sunday (3 days): 2200 calories/day = 6,600 calories</li>
+                            <li><strong>Weekly total:</strong> 13,600 calories (close to target!)</li>
+                        </ul>
+
+                        <h4>Practical Application:</h4>
+                        <table>
+                            <tr>
+                                <th>Day</th>
+                                <th>Calories</th>
+                                <th>Strategy</th>
+                            </tr>
+                            <tr>
+                                <td>Monday</td>
+                                <td>1750</td>
+                                <td>Slightly smaller portions at meals</td>
+                            </tr>
+                            <tr>
+                                <td>Tuesday</td>
+                                <td>1750</td>
+                                <td>Same</td>
+                            </tr>
+                            <tr>
+                                <td>Wednesday</td>
+                                <td>1750</td>
+                                <td>Same</td>
+                            </tr>
+                            <tr>
+                                <td>Thursday</td>
+                                <td>1750</td>
+                                <td>Same</td>
+                            </tr>
+                            <tr>
+                                <td>Friday</td>
+                                <td>2200</td>
+                                <td>Normal meals + social dinner (can have starter/dessert!)</td>
+                            </tr>
+                            <tr>
+                                <td>Saturday</td>
+                                <td>2200</td>
+                                <td>Brunch with friends, normal day</td>
+                            </tr>
+                            <tr>
+                                <td>Sunday</td>
+                                <td>2200</td>
+                                <td>Cooking project, relaxed day</td>
+                            </tr>
+                        </table>
+
+                        <p><strong>Where the extra 450 calories go on weekends:</strong></p>
+                        <ul>
+                            <li>Restaurant starter (200 cal)</li>
+                            <li>Small dessert (150 cal)</li>
+                            <li>Glass of wine (100 cal)</li>
+                        </ul>
+
+                        <div class="highlight">
+                            <h3>Rules for Zig-Zag Success</h3>
+                            <ul>
+                                <li><strong>Track weekly total:</strong> That's what matters, not daily</li>
+                                <li><strong>Don't go crazy on weekends:</strong> 2200 is still a limit, not license to binge</li>
+                                <li><strong>Monday-Thursday must be consistent:</strong> Can't make up for huge weekend overage</li>
+                                <li><strong>Protein stays high every day:</strong> Hit 166g even on high-calorie days</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="expandable">
+                    <div class="expandable-header">Eating Out & Social Events</div>
+                    <div class="expandable-content">
+                        <h4>Restaurant Strategies:</h4>
+
+                        <p><strong>BEFORE YOU GO:</strong></p>
+                        <ul>
+                            <li>Don't arrive starving (eat small protein snack if needed)</li>
+                            <li>Check menu online if possible</li>
+                            <li>Decide in advance what type of meal (appetizer + main? Just main? Share dessert?)</li>
+                        </ul>
+
+                        <p><strong>ORDERING:</strong></p>
+                        <ul>
+                            <li><strong>Start with protein:</strong> Grilled/tandoori chicken, fish, paneer tikka</li>
+                            <li><strong>Choose ONE carb:</strong> Naan OR rice, not both</li>
+                            <li><strong>Ask for modifications:</strong>
+                                <ul>
+                                    <li>"Can the curry be made with less oil?"</li>
+                                    <li>"Can I get extra vegetables?"</li>
+                                    <li>"Sauce on the side, please"</li>
+                                </ul>
+                            </li>
+                            <li><strong>Skip the bread basket:</strong> Save carbs for your actual meal</li>
+                        </ul>
+
+                        <p><strong>DURING MEAL:</strong></p>
+                        <ul>
+                            <li>Eat slowly, put fork down between bites</li>
+                            <li>Stop when 80% full (not stuffed!)</li>
+                            <li>It's okay to leave food on plate</li>
+                        </ul>
+
+                        <h4>Best Restaurant Choices by Cuisine:</h4>
+
+                        <p><strong>Indian:</strong></p>
+                        <ul>
+                            <li><strong>Good:</strong> Tandoori chicken, fish tikka, dal tadka, palak paneer (ask for less oil), grilled kebabs</li>
+                            <li><strong>Moderate:</strong> Chicken curry (tomato-based, not cream), biryani (small portion)</li>
+                            <li><strong>Avoid:</strong> Butter chicken, paneer butter masala, fried items, large naan</li>
+                        </ul>
+
+                        <p><strong>Asian:</strong></p>
+                        <ul>
+                            <li><strong>Good:</strong> Grilled fish/chicken, stir-fried vegetables, tom yum soup, sashimi</li>
+                            <li><strong>Moderate:</strong> Thai curry (ask for light coconut milk), small portion rice/noodles</li>
+                            <li><strong>Avoid:</strong> Fried rice, pad thai, sweet sauces, fried appetizers</li>
+                        </ul>
+
+                        <p><strong>Italian:</strong></p>
+                        <ul>
+                            <li><strong>Good:</strong> Grilled fish/chicken, salads, vegetable sides</li>
+                            <li><strong>Moderate:</strong> Pasta (small portion, protein on top, share with friend)</li>
+                            <li><strong>Avoid:</strong> Cream sauces, large pasta portions, garlic bread</li>
+                        </ul>
+
+                        <h4>Social Events (Parties, Gatherings):</h4>
+                        <ul>
+                            <li><strong>Eat normally during day:</strong> Don't "save" calories (leads to overeating)</li>
+                            <li><strong>At event:</strong> Protein + veggies from buffet first, then treat foods</li>
+                            <li><strong>One plate rule:</strong> Load plate once, eat that, done</li>
+                            <li><strong>Hold a water glass:</strong> Keeps hands occupied</li>
+                            <li><strong>Focus on socializing:</strong> Not on food</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="expandable">
+                    <div class="expandable-header">Travel & Work Challenges</div>
+                    <div class="expandable-content">
+                        <h4>Traveling for Work (15 days/month):</h4>
+                        <p>This was your biggest challenge before. Here's how to manage:</p>
+
+                        <h4>PREPARATION:</h4>
+                        <ul>
+                            <li><strong>Pack protein snacks:</strong> Protein bars, nuts, roasted chickpeas</li>
+                            <li><strong>Travel supplements:</strong> Put daily doses in pill organizer</li>
+                            <li><strong>Scout restaurants near hotel:</strong> Find options before you're hungry</li>
+                        </ul>
+
+                        <h4>DURING TRAVEL:</h4>
+                        <p><strong>Breakfast:</strong></p>
+                        <ul>
+                            <li>Hotel buffet: Eggs + vegetables + small portion carbs</li>
+                            <li>Avoid pastries, sugary cereals</li>
+                            <li>Aim for 40-50g protein</li>
+                        </ul>
+
+                        <p><strong>Lunch/Dinner:</strong></p>
+                        <ul>
+                            <li>Order grilled protein + vegetables</li>
+                            <li>Ask for olive oil on side (measure yourself)</li>
+                            <li>Rice/roti: Small portion or skip</li>
+                        </ul>
+
+                        <p><strong>Snacks:</strong></p>
+                        <ul>
+                            <li>Greek yogurt (if available)</li>
+                            <li>Nuts (pre-portioned)</li>
+                            <li>Boiled eggs (room service)</li>
+                        </ul>
+
+                        <h4>MAINTAINING ROUTINE WHILE TRAVELING:</h4>
+                        <ul>
+                            <li><strong>Wake time:</strong> Try to keep consistent (even with time zones)</li>
+                            <li><strong>Exercise:</strong> Hotel gym, YouTube workout in room, or just walking</li>
+                            <li><strong>Sleep:</strong> Priority! Travel is stressful, need that recovery</li>
+                            <li><strong>Hydration:</strong> Carry water bottle, drink consistently</li>
+                        </ul>
+
+                        <div class="warning">
+                            <strong>Reality check:</strong> Travel weeks won't be perfect. Goal is 80% adherence:
+                            <ul>
+                                <li>Hit protein target</li>
+                                <li>Make decent food choices</li>
+                                <li>Get some movement</li>
+                                <li>Don't stress about perfection</li>
+                            </ul>
+                            <p>If you maintain these basics during travel, you won't lose progress.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="expandable">
+                    <div class="expandable-header">Special Occasions & Cooking Projects</div>
+                    <div class="expandable-content">
+                        <h4>Elaborate Cooking (Your Sunday Ramen Project!):</h4>
+                        <p>You love cooking elaborate meals 2-3 times per month. How to fit this in:</p>
+
+                        <h4>Strategy: Use Zig-Zag High Day</h4>
+                        <p>Sunday = 2200 calories = Perfect for special cooking!</p>
+
+                        <h4>Making Recipes Fit:</h4>
+
+                        <p><strong>Example: Ramen Bowl</strong></p>
+                        <p><strong>Traditional ramen issues:</strong></p>
+                        <ul>
+                            <li>Refined noodles (high GI, lots of carbs)</li>
+                            <li>Small protein portion</li>
+                            <li>Fatty broth</li>
+                        </ul>
+
+                        <p><strong>Modified for weight loss:</strong></p>
+                        <ul>
+                            <li><strong>Noodles:</strong> Use shirataki (konjac) noodles OR half regular + half zucchini noodles</li>
+                            <li><strong>Protein:</strong> GENEROUS - 150g chicken + 2 eggs (vs usual small portion)</li>
+                            <li><strong>Broth:</strong> Rich flavor but skim fat</li>
+                            <li><strong>Toppings:</strong> LOTS of vegetables (bok choy, mushrooms, bean sprouts)</li>
+                        </ul>
+
+                        <p><strong>Result:</strong> ~600 cal | 75p | 45c | 18f - Huge satisfying bowl that fits your day!</p>
+
+                        <h4>Other Elaborate Meals:</h4>
+                        <table>
+                            <tr>
+                                <th>Dish</th>
+                                <th>Modification</th>
+                                <th>Result</th>
+                            </tr>
+                            <tr>
+                                <td>Biryani</td>
+                                <td>Mix cauliflower rice 50-50 with brown rice, LOTS of protein</td>
+                                <td>Cuts carbs in half, volume stays high</td>
+                            </tr>
+                            <tr>
+                                <td>Thai curry</td>
+                                <td>Light coconut milk, extra vegetables, generous protein</td>
+                                <td>Saves 300 calories, more filling</td>
+                            </tr>
+                            <tr>
+                                <td>Pasta</td>
+                                <td>Chickpea pasta OR zucchini noodles, protein on top</td>
+                                <td>More protein, fewer refined carbs</td>
+                            </tr>
+                        </table>
+
+                        <h4>Day Structure for Cooking Sunday:</h4>
+                        <ul>
+                            <li><strong>Breakfast (lighter):</strong> 400 cal - Protein smoothie</li>
+                            <li><strong>Lunch:</strong> 550 cal - Normal meal</li>
+                            <li><strong>Cooking project dinner:</strong> 650 cal - Your creation!</li>
+                            <li><strong>Snacks:</strong> 100 cal</li>
+                            <li><strong>Total:</strong> 1700 cal (leaving buffer if your portion is larger)</li>
+                        </ul>
+
+                        <div class="highlight">
+                            <h3>Key Point</h3>
+                            <p>Special cooking is PART OF sustainable weight loss. You're building a lifestyle, not doing a diet. 2-3x per month fits perfectly!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="btn" onclick="showSection('action')">Next: Your Action Plan →</button>
+            </div>
+        </div>
+
+        <!-- ACTION PLAN SECTION -->
+        <div id="action" class="section">
+            <div class="card">
+                <h2>Your Action Plan: Getting Started</h2>
+                
+                <h3>Phase 1: Foundation (Weeks 1-2)</h3>
+                <p><strong>Goal:</strong> Establish basic routine and habits</p>
+                
+                <div class="checklist">
+                    <h4>Week 1 Checklist:</h4>
+                    <ul class="checklist">
+                        <li>Set consistent wake time (7:30 AM)</li>
+                        <li>Set consistent sleep time (10:30 PM)</li>
+                        <li>Move workouts to morning (9-10:30 AM window)</li>
+                        <li>Establish meal times (10:30 AM, 2:30 PM, 7 PM)</li>
+                        <li>Start tracking protein intake (goal: 140g+ daily)</li>
+                        <li>Start morning ritual (jeera water, almonds)</li>
+                    </ul>
+
+                    <h4>Week 2 Checklist:</h4>
+                    <ul class="checklist">
+                        <li>Add sleep optimization routine (dim lights, breathing)</li>
+                        <li>Start basic supplements (Vitamin D, if you have them)</li>
+                        <li>Practice eating order (salad→protein→carbs)</li>
+                        <li>Focus on low GI carbs (ragi, quinoa, oats)</li>
+                        <li>Track weekly weight (same day, same time)</li>
+                    </ul>
+                </div>
+
+                <h3>Phase 2: Building Momentum (Weeks 3-8)</h3>
+                <p><strong>Goal:</strong> Consistent execution and initial results</p>
+
+                <div class="checklist">
+                    <ul class="checklist">
+                        <li>Routine is now established (feels automatic)</li>
+                        <li>Add full supplement stack gradually</li>
+                        <li>Implement zig-zag calories (weekday/weekend split)</li>
+                        <li>Develop restaurant strategies (test them out)</li>
+                        <li>Track progress weekly (weight, energy, sleep quality)</li>
+                        <li>Expected: 3-6 kg weight loss in this phase</li>
+                    </ul>
+                </div>
+
+                <h3>Phase 3: Optimization (Months 3-6)</h3>
+                <p><strong>Goal:</strong> Refine approach and maintain consistency</p>
+
+                <div class="checklist">
+                    <ul class="checklist">
+                        <li>Adjust calories if needed (based on results)</li>
+                        <li>Incorporate travel strategies (if you travel)</li>
+                        <li>Perfect your weekend flexibility</li>
+                        <li>Add your special cooking projects</li>
+                        <li>Continue lifestyle habits (sleep, stress management)</li>
+                        <li>Expected: Additional 6-12 kg loss</li>
+                    </ul>
+                </div>
+
+                <h3>Tracking Your Progress</h3>
+                <table>
+                    <tr>
+                        <th>What to Track</th>
+                        <th>How Often</th>
+                        <th>Why</th>
+                    </tr>
+                    <tr>
+                        <td>Weight</td>
+                        <td>Weekly (same day/time)</td>
+                        <td>Overall progress trend</td>
+                    </tr>
+                    <tr>
+                        <td>Energy levels (1-10)</td>
+                        <td>Daily (brief note)</td>
+                        <td>Indicates if approach is working</td>
+                    </tr>
+                    <tr>
+                        <td>Sleep quality (1-10)</td>
+                        <td>Daily (morning note)</td>
+                        <td>Sleep affects everything</td>
+                    </tr>
+                    <tr>
+                        <td>Protein intake</td>
+                        <td>Daily (at least first month)</td>
+                        <td>Most important macro</td>
+                    </tr>
+                    <tr>
+                        <td>Workout completion</td>
+                        <td>Daily (yes/no)</td>
+                        <td>Consistency matters</td>
+                    </tr>
+                    <tr>
+                        <td>Stress level (1-10)</td>
+                        <td>Daily (brief note)</td>
+                        <td>Identifies patterns</td>
+                    </tr>
+                </table>
+
+                <h3>When Things Don't Go As Planned</h3>
+                
+                <div class="expandable">
+                    <div class="expandable-header">Troubleshooting: Weight Loss Stalls</div>
+                    <div class="expandable-content">
+                        <p><strong>If weight hasn't changed in 2-3 weeks:</strong></p>
+                        
+                        <h4>Check These First:</h4>
+                        <ul>
+                            <li><strong>Are you hitting protein target?</strong> (166g daily)</li>
+                            <li><strong>Are you actually tracking portions?</strong> (Measuring vs estimating)</li>
+                            <li><strong>Sleep quality?</strong> (7-8 hours consistently?)</li>
+                            <li><strong>Stress levels?</strong> (High cortisol blocks progress)</li>
+                            <li><strong>Cycle timing?</strong> (Women: weight fluctuates with menstrual cycle)</li>
+                        </ul>
+
+                        <h4>Adjustments to Try:</h4>
+                        <ol>
+                            <li>Reduce weekday calories to 1700 (keep weekends same)</li>
+                            <li>Add one more workout day</li>
+                            <li>Stricter restaurant choices (if eating out often)</li>
+                            <li>Check supplement compliance</li>
+                            <li>Evaluate stress management (often the culprit!)</li>
+                        </ol>
+
+                        <div class="warning">
+                            <strong>Don't:</strong>
+                            <ul>
+                                <li>Drop calories drastically (below 1600 daily average)</li>
+                                <li>Over-exercise (more than 6 days/week intense)</li>
+                                <li>Give up (plateaus happen, they're temporary)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="expandable">
+                    <div class="expandable-header">Troubleshooting: Always Hungry</div>
+                    <div class="expandable-content">
+                        <p><strong>If you're constantly hungry despite eating enough calories:</strong></p>
+
+                        <h4>Check:</h4>
+                        <ul>
+                            <li><strong>Protein at every meal?</strong> (Should be 40-60g per meal)</li>
+                            <li><strong>Eating high volume foods?</strong> (Lots of vegetables)</li>
+                            <li><strong>Enough fat?</strong> (Need 45-55g daily for satiety)</li>
+                            <li><strong>Drinking enough water?</strong> (Sometimes thirst feels like hunger)</li>
+                            <li><strong>Sleep quality?</strong> (Poor sleep increases hunger hormones)</li>
+                        </ul>
+
+                        <h4>Strategies:</h4>
+                        <ul>
+                            <li>Increase vegetables at each meal (adds volume, no calories)</li>
+                            <li>Eat slower (takes 20 min for fullness signal)</li>
+                            <li>Drink water before meals</li>
+                            <li>Add fiber (isabgol before meals)</li>
+                            <li>Check if you're actually eating enough (don't go below 1600 average)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="expandable">
+                    <div class="expandable-header">Troubleshooting: Low Energy/Fatigue</div>
+                    <div class="expandable-content">
+                        <p><strong>If you're feeling tired despite following the plan:</strong></p>
+
+                        <h4>Most Common Causes:</h4>
+                        <ol>
+                            <li><strong>Not enough carbs:</strong> You need 175-200g for energy. Don't go too low.</li>
+                            <li><strong>Poor sleep:</strong> This is often THE factor. Prioritize 7-8 hours.</li>
+                            <li><strong>Not eating enough total:</strong> Too aggressive deficit drains energy.</li>
+                            <li><strong>Vitamin D deficiency:</strong> Get blood test, might need higher dose.</li>
+                            <li><strong>Overtraining:</strong> Working out 7 days/week is too much. Need rest.</li>
+                        </ol>
+
+                        <h4>Solutions:</h4>
+                        <ul>
+                            <li>Add 25g carbs to breakfast (extra ragi chila)</li>
+                            <li>Prioritize sleep above all else</li>
+                            <li>Take 1-2 complete rest days per week</li>
+                            <li>Get Vitamin D blood test</li>
+                            <li>Consider eating at maintenance (2200 cal) for 1 week to reset</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <h3>Success Metrics</h3>
+                <p>You'll know it's working when you notice:</p>
+
+                <div class="highlight">
+                    <h4>Week 2:</h4>
+                    <ul>
+                        <li>Falling asleep easily by 11 PM</li>
+                        <li>Waking naturally around 7:30 AM</li>
+                        <li>Hungry at meal times (body expects food then)</li>
+                        <li>More stable energy (no afternoon crash)</li>
+                    </ul>
+
+                    <h4>Month 1:</h4>
+                    <ul>
+                        <li>3-4 kg weight loss</li>
+                        <li>Better sleep quality</li>
+                        <li>Less sugar cravings</li>
+                        <li>Routine feels automatic</li>
+                        <li>Energy significantly improved</li>
+                    </ul>
+
+                    <h4>Month 3:</h4>
+                    <ul>
+                        <li>8-10 kg total weight loss</li>
+                        <li>Clothes fitting looser</li>
+                        <li>People noticing changes</li>
+                        <li>If PCOS: Symptoms improving (less facial hair growth, more regular periods)</li>
+                        <li>Confidence building</li>
+                    </ul>
+
+                    <h4>Month 6+:</h4>
+                    <ul>
+                        <li>15+ kg loss</li>
+                        <li>This is just "how you live" now</li>
+                        <li>Can't imagine going back to old habits</li>
+                        <li>Sustainable for life</li>
+                    </ul>
+                </div>
+
+                <h3>Final Reminders</h3>
+                <div class="card" style="background: linear-gradient(135deg, var(--peach-light) 0%, var(--cream) 100%);">
+                    <ul>
+                        <li><strong>Progress over perfection:</strong> 80% adherence is success</li>
+                        <li><strong>Consistency compounds:</strong> Small actions daily add up</li>
+                        <li><strong>Your body is not broken:</strong> It just needs the right approach</li>
+                        <li><strong>Weight loss is not linear:</strong> Some weeks faster, some slower - trend matters</li>
+                        <li><strong>This is a lifestyle, not a diet:</strong> Build sustainable habits</li>
+                        <li><strong>You're not alone:</strong> Share this guide with friends who need it</li>
+                    </ul>
+                </div>
+
+                <div style="text-align: center; margin: 3rem 0;">
+                    <button class="btn btn-secondary" onclick="showSection('home')">← Back to Home</button>
+                    <button class="btn" onclick="window.scrollTo(0,0)">↑ Back to Top</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer style="background: var(--green-dark); color: white; padding: 2rem; text-align: center; margin-top: 3rem;">
+        <p><strong>Understanding Your Body: Weight Loss Made Clear</strong></p>
+        <p>Science-backed strategies for sustainable weight loss</p>
+        <p style="font-size: 0.9rem; margin-top: 1rem; opacity: 0.8;">Remember: Consistency over perfection. Progress over speed. Health over everything.</p>
+    </footer>
+
+    <script>
+        // Navigation
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => section.classList.remove('active'));
+            
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Update nav buttons
+            const buttons = document.querySelectorAll('nav button');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        // Expandable sections
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('expandable-header')) {
+                e.target.classList.toggle('open');
+                const content = e.target.nextElementSibling;
+                content.classList.toggle('open');
+            }
+        });
+
+        // Checklist functionality
+        document.addEventListener('click', function(e) {
+            if (e.target.matches('.checklist li')) {
+                e.target.classList.toggle('checked');
+            }
+        });
+
+        // Initialize - collapse all expandable sections
+        document.addEventListener('DOMContentLoaded', function() {
+            const expandableContents = document.querySelectorAll('.expandable-content');
+            expandableContents.forEach(content => {
+                content.classList.remove('open');
+            });
+        });
+
+        // Mobile menu handling
+        if (window.innerWidth <= 768) {
+            document.querySelectorAll('nav button').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Close mobile menu after selection
+                    setTimeout(() => window.scrollTo(0, 0), 100);
+                });
+            });
+        }
+    </script>
+</body>
+</html>
