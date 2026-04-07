@@ -1704,20 +1704,838 @@
         <!-- NEW: INDIAN FOOD DATABASE SECTION -->
         <div id="food-database" class="section">
             <div class="card">
-                <h2>Indian Food Macros Database</h2>
-                <p>Comprehensive macro breakdown for 100+ common Indian foods. Search or filter by category.</p>
 
-                <input type="text" class="search-box" id="foodSearch" placeholder="🔍 Search for any Indian food (e.g., paneer, roti, dal)...">
+                <div class="calculator" style="margin-top: 3rem;">
+                    <h3>Indian Food Macro Guide</h3>
+                    <p>Quick reference for common Indian foods. Use these to track your daily macros!</p>
 
-                <div class="food-filters">
-                    <button class="filter-btn active" onclick="filterFood('all')">All Foods</button>
-                    <button class="filter-btn" onclick="filterFood('grains')">Grains & Breads</button>
-                    <button class="filter-btn" onclick="filterFood('proteins')">Proteins</button>
-                    <button class="filter-btn" onclick="filterFood('dals')">Dals & Legumes</button>
-                    <button class="filter-btn" onclick="filterFood('vegetables')">Vegetables</button>
-                    <button class="filter-btn" onclick="filterFood('dairy')">Dairy</button>
-                    <button class="filter-btn" onclick="filterFood('snacks')">Snacks</button>
+                    <!-- Search and Filter -->
+                    <div style="margin: 1.5rem 0;">
+                        <input type="text" id="foodSearch" placeholder="🔍 Search foods..." 
+                               onkeyup="filterFoods()" 
+                               style="width: 100%; padding: 0.8rem; border: 2px solid var(--border); border-radius: 8px; font-size: 1rem;">
+                    </div>
+
+                    <div style="margin: 1rem 0;">
+                        <strong>Filter by category:</strong>
+                        <select id="categoryFilter" onchange="filterFoods()" style="padding: 0.5rem; margin-left: 0.5rem; border-radius: 5px;">
+                            <option value="all">All Categories</option>
+                            <option value="fruits">Fruits</option>
+                            <option value="vegetables">Vegetables</option>
+                            <option value="dals">Dals & Lentils</option>
+                            <option value="proteins">Proteins</option>
+                            <option value="dairy">Dairy</option>
+                            <option value="grains">Grains & Flours</option>
+                            <option value="cooked">Cooked Dishes</option>
+                            <option value="snacks">Snacks</option>
+                        </select>
+                    </div>
+
+                    <table id="foodTable">
+                        <thead>
+                            <tr>
+                                <th>Food Item</th>
+                                <th>Serving Size</th>
+                                <th>Calories</th>
+                                <th>Protein (g)</th>
+                                <th>Carbs (g)</th>
+                                <th>Fat (g)</th>
+                                <th>Fiber (g)</th>
+                                <th>Category</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- FRUITS -->
+                            <tr class="category-header">
+                                <td colspan="8" style="background: var(--peach); font-weight: bold; font-size: 1.1rem;">🍎 FRUITS</td>
+                            </tr>
+                            <tr data-category="fruits">
+                                <td>Apple</td>
+                                <td>1 medium (182g)</td>
+                                <td>95</td>
+                                <td>0.5</td>
+                                <td>25</td>
+                                <td>0.3</td>
+                                <td>4.4</td>
+                                <td>Fruits</td>
+                            </tr>
+                            <tr data-category="fruits">
+                                <td>Banana</td>
+                                <td>1 medium (118g)</td>
+                                <td>105</td>
+                                <td>1.3</td>
+                                <td>27</td>
+                                <td>0.4</td>
+                                <td>3.1</td>
+                                <td>Fruits</td>
+                            </tr>
+                            <tr data-category="fruits">
+                                <td>Mango (Aam)</td>
+                                <td>1 cup sliced (165g)</td>
+                                <td>99</td>
+                                <td>1.4</td>
+                                <td>25</td>
+                                <td>0.6</td>
+                                <td>2.6</td>
+                                <td>Fruits</td>
+                            </tr>
+                            <tr data-category="fruits">
+                                <td>Papaya</td>
+                                <td>1 cup cubed (140g)</td>
+                                <td>55</td>
+                                <td>0.9</td>
+                                <td>14</td>
+                                <td>0.3</td>
+                                <td>2.5</td>
+                                <td>Fruits</td>
+                            </tr>
+                            <tr data-category="fruits">
+                                <td>Watermelon</td>
+                                <td>1 cup cubed (152g)</td>
+                                <td>46</td>
+                                <td>0.9</td>
+                                <td>12</td>
+                                <td>0.2</td>
+                                <td>0.6</td>
+                                <td>Fruits</td>
+                            </tr>
+                            <tr data-category="fruits">
+                                <td>Orange</td>
+                                <td>1 medium (131g)</td>
+                                <td>62</td>
+                                <td>1.2</td>
+                                <td>15</td>
+                                <td>0.2</td>
+                                <td>3.1</td>
+                                <td>Fruits</td>
+                            </tr>
+                            <tr data-category="fruits">
+                                <td>Grapes</td>
+                                <td>1 cup (151g)</td>
+                                <td>104</td>
+                                <td>1.1</td>
+                                <td>27</td>
+                                <td>0.2</td>
+                                <td>1.4</td>
+                                <td>Fruits</td>
+                            </tr>
+                            <tr data-category="fruits">
+                                <td>Guava (Amrud)</td>
+                                <td>1 medium (55g)</td>
+                                <td>37</td>
+                                <td>1.4</td>
+                                <td>8</td>
+                                <td>0.5</td>
+                                <td>3</td>
+                                <td>Fruits</td>
+                            </tr>
+                            <tr data-category="fruits">
+                                <td>Pomegranate (Anar)</td>
+                                <td>1/2 cup seeds (87g)</td>
+                                <td>72</td>
+                                <td>1.5</td>
+                                <td>16</td>
+                                <td>1</td>
+                                <td>3.5</td>
+                                <td>Fruits</td>
+                            </tr>
+
+                            <!-- GREEN VEGETABLES -->
+                            <tr class="category-header">
+                                <td colspan="8" style="background: var(--green); font-weight: bold; font-size: 1.1rem;">🥬 GREEN VEGETABLES</td>
+                            </tr>
+                            <tr data-category="vegetables">
+                                <td>Spinach (Palak)</td>
+                                <td>1 cup cooked (180g)</td>
+                                <td>41</td>
+                                <td>5.3</td>
+                                <td>7</td>
+                                <td>0.5</td>
+                                <td>4.3</td>
+                                <td>Vegetables</td>
+                            </tr>
+                            <tr data-category="vegetables">
+                                <td>Fenugreek Leaves (Methi)</td>
+                                <td>1 cup cooked (100g)</td>
+                                <td>49</td>
+                                <td>4.4</td>
+                                <td>6</td>
+                                <td>0.9</td>
+                                <td>2.7</td>
+                                <td>Vegetables</td>
+                            </tr>
+                            <tr data-category="vegetables">
+                                <td>Mustard Greens (Sarson)</td>
+                                <td>1 cup cooked (140g)</td>
+                                <td>36</td>
+                                <td>3.2</td>
+                                <td>6</td>
+                                <td>0.5</td>
+                                <td>2.8</td>
+                                <td>Vegetables</td>
+                            </tr>
+                            <tr data-category="vegetables">
+                                <td>Bottle Gourd (Lauki)</td>
+                                <td>1 cup cooked (160g)</td>
+                                <td>22</td>
+                                <td>0.8</td>
+                                <td>5</td>
+                                <td>0.1</td>
+                                <td>1.9</td>
+                                <td>Vegetables</td>
+                            </tr>
+                            <tr data-category="vegetables">
+                                <td>Ridge Gourd (Turai)</td>
+                                <td>1 cup cooked (140g)</td>
+                                <td>20</td>
+                                <td>0.9</td>
+                                <td>4</td>
+                                <td>0.3</td>
+                                <td>1.4</td>
+                                <td>Vegetables</td>
+                            </tr>
+                            <tr data-category="vegetables">
+                                <td>Bitter Gourd (Karela)</td>
+                                <td>1 cup cooked (124g)</td>
+                                <td>24</td>
+                                <td>1.5</td>
+                                <td>5</td>
+                                <td>0.2</td>
+                                <td>2.6</td>
+                                <td>Vegetables</td>
+                            </tr>
+                            <tr data-category="vegetables">
+                                <td>Okra (Bhindi)</td>
+                                <td>1 cup cooked (160g)</td>
+                                <td>36</td>
+                                <td>3.4</td>
+                                <td>7</td>
+                                <td>0.3</td>
+                                <td>3.2</td>
+                                <td>Vegetables</td>
+                            </tr>
+                            <tr data-category="vegetables">
+                                <td>Green Beans (French Beans)</td>
+                                <td>1 cup cooked (125g)</td>
+                                <td>44</td>
+                                <td>2.4</td>
+                                <td>10</td>
+                                <td>0.4</td>
+                                <td>4</td>
+                                <td>Vegetables</td>
+                            </tr>
+                            <tr data-category="vegetables">
+                                <td>Broccoli</td>
+                                <td>1 cup cooked (156g)</td>
+                                <td>55</td>
+                                <td>3.7</td>
+                                <td>11</td>
+                                <td>0.6</td>
+                                <td>5.1</td>
+                                <td>Vegetables</td>
+                            </tr>
+                            <tr data-category="vegetables">
+                                <td>Cabbage (Patta Gobi)</td>
+                                <td>1 cup cooked (150g)</td>
+                                <td>34</td>
+                                <td>1.9</td>
+                                <td>8</td>
+                                <td>0.1</td>
+                                <td>2.9</td>
+                                <td>Vegetables</td>
+                            </tr>
+
+                            <!-- OTHER VEGETABLES -->
+                            <tr class="category-header">
+                                <td colspan="8" style="background: var(--green-dark); font-weight: bold; font-size: 1.1rem; color: white;">🥕 OTHER VEGETABLES</td>
+                            </tr>
+                            <tr data-category="vegetables">
+                                <td>Tomato (Tamatar)</td>
+                                <td>1 medium (123g)</td>
+                                <td>22</td>
+                                <td>1.1</td>
+                                <td>5</td>
+                                <td>0.2</td>
+                                <td>1.5</td>
+                                <td>Vegetables</td>
+                            </tr>
+                            <tr data-category="vegetables">
+                                <td>Onion (Pyaz)</td>
+                                <td>1 medium (110g)</td>
+                                <td>44</td>
+                                <td>1.2</td>
+                                <td>10</td>
+                                <td>0.1</td>
+                                <td>1.9</td>
+                                <td>Vegetables</td>
+                            </tr>
+                            <tr data-category="vegetables">
+                                <td>Potato (Aloo)</td>
+                                <td>1 medium (173g)</td>
+                                <td>164</td>
+                                <td>4.3</td>
+                                <td>37</td>
+                                <td>0.2</td>
+                                <td>4.7</td>
+                                <td>Vegetables</td>
+                            </tr>
+                            <tr data-category="vegetables">
+                                <td>Sweet Potato (Shakarkand)</td>
+                                <td>1 medium (114g)</td>
+                                <td>103</td>
+                                <td>2.3</td>
+                                <td>24</td>
+                                <td>0.2</td>
+                                <td>3.8</td>
+                                <td>Vegetables</td>
+                            </tr>
+                            <tr data-category="vegetables">
+                                <td>Cauliflower (Phool Gobi)</td>
+                                <td>1 cup cooked (124g)</td>
+                                <td>29</td>
+                                <td>2.3</td>
+                                <td>6</td>
+                                <td>0.6</td>
+                                <td>3.3</td>
+                                <td>Vegetables</td>
+                            </tr>
+                            <tr data-category="vegetables">
+                                <td>Carrot (Gajar)</td>
+                                <td>1 medium (61g)</td>
+                                <td>25</td>
+                                <td>0.6</td>
+                                <td>6</td>
+                                <td>0.1</td>
+                                <td>1.7</td>
+                                <td>Vegetables</td>
+                            </tr>
+                            <tr data-category="vegetables">
+                                <td>Eggplant (Baingan)</td>
+                                <td>1 cup cubed (82g)</td>
+                                <td>20</td>
+                                <td>0.8</td>
+                                <td>5</td>
+                                <td>0.1</td>
+                                <td>2.5</td>
+                                <td>Vegetables</td>
+                            </tr>
+                            <tr data-category="vegetables">
+                                <td>Bell Pepper (Shimla Mirch)</td>
+                                <td>1 medium (119g)</td>
+                                <td>37</td>
+                                <td>1.5</td>
+                                <td>9</td>
+                                <td>0.4</td>
+                                <td>3.1</td>
+                                <td>Vegetables</td>
+                            </tr>
+                            <tr data-category="vegetables">
+                                <td>Pumpkin (Kaddu)</td>
+                                <td>1 cup cooked (245g)</td>
+                                <td>49</td>
+                                <td>1.8</td>
+                                <td>12</td>
+                                <td>0.2</td>
+                                <td>2.7</td>
+                                <td>Vegetables</td>
+                            </tr>
+
+                            <!-- DALS & LENTILS -->
+                            <tr class="category-header">
+                                <td colspan="8" style="background: var(--brown); font-weight: bold; font-size: 1.1rem; color: white;">🌾 DALS & LENTILS (Cooked)</td>
+                            </tr>
+                            <tr data-category="dals">
+                                <td>Moong Dal (Green Gram)</td>
+                                <td>1 cup cooked (202g)</td>
+                                <td>212</td>
+                                <td>14.2</td>
+                                <td>38</td>
+                                <td>0.8</td>
+                                <td>15.4</td>
+                                <td>Dals & Lentils</td>
+                            </tr>
+                            <tr data-category="dals">
+                                <td>Masoor Dal (Red Lentil)</td>
+                                <td>1 cup cooked (198g)</td>
+                                <td>230</td>
+                                <td>17.9</td>
+                                <td>40</td>
+                                <td>0.8</td>
+                                <td>15.6</td>
+                                <td>Dals & Lentils</td>
+                            </tr>
+                            <tr data-category="dals">
+                                <td>Toor Dal (Pigeon Pea)</td>
+                                <td>1 cup cooked (202g)</td>
+                                <td>203</td>
+                                <td>11.4</td>
+                                <td>39</td>
+                                <td>0.6</td>
+                                <td>11.3</td>
+                                <td>Dals & Lentils</td>
+                            </tr>
+                            <tr data-category="dals">
+                                <td>Chana Dal (Split Chickpea)</td>
+                                <td>1 cup cooked (210g)</td>
+                                <td>269</td>
+                                <td>14.5</td>
+                                <td>45</td>
+                                <td>4.3</td>
+                                <td>12.5</td>
+                                <td>Dals & Lentils</td>
+                            </tr>
+                            <tr data-category="dals">
+                                <td>Urad Dal (Black Gram)</td>
+                                <td>1 cup cooked (202g)</td>
+                                <td>229</td>
+                                <td>15</td>
+                                <td>41</td>
+                                <td>1</td>
+                                <td>13</td>
+                                <td>Dals & Lentils</td>
+                            </tr>
+                            <tr data-category="dals">
+                                <td>Rajma (Kidney Beans)</td>
+                                <td>1 cup cooked (177g)</td>
+                                <td>225</td>
+                                <td>15.3</td>
+                                <td>40</td>
+                                <td>0.9</td>
+                                <td>13.1</td>
+                                <td>Dals & Lentils</td>
+                            </tr>
+                            <tr data-category="dals">
+                                <td>Kabuli Chana (Chickpeas)</td>
+                                <td>1 cup cooked (164g)</td>
+                                <td>269</td>
+                                <td>14.5</td>
+                                <td>45</td>
+                                <td>4.2</td>
+                                <td>12.5</td>
+                                <td>Dals & Lentils</td>
+                            </tr>
+
+                            <!-- PROTEINS -->
+                            <tr class="category-header">
+                                <td colspan="8" style="background: var(--peach); font-weight: bold; font-size: 1.1rem;">🍗 PROTEINS</td>
+                            </tr>
+                            <tr data-category="proteins">
+                                <td>Chicken Breast (skinless)</td>
+                                <td>100g cooked</td>
+                                <td>165</td>
+                                <td>31</td>
+                                <td>0</td>
+                                <td>3.6</td>
+                                <td>0</td>
+                                <td>Proteins</td>
+                            </tr>
+                            <tr data-category="proteins">
+                                <td>Chicken Thigh (skinless)</td>
+                                <td>100g cooked</td>
+                                <td>209</td>
+                                <td>26</td>
+                                <td>0</td>
+                                <td>10.9</td>
+                                <td>0</td>
+                                <td>Proteins</td>
+                            </tr>
+                            <tr data-category="proteins">
+                                <td>Egg (whole)</td>
+                                <td>1 large (50g)</td>
+                                <td>78</td>
+                                <td>6.3</td>
+                                <td>0.6</td>
+                                <td>5.3</td>
+                                <td>0</td>
+                                <td>Proteins</td>
+                            </tr>
+                            <tr data-category="proteins">
+                                <td>Egg White</td>
+                                <td>1 large (33g)</td>
+                                <td>17</td>
+                                <td>3.6</td>
+                                <td>0.2</td>
+                                <td>0.1</td>
+                                <td>0</td>
+                                <td>Proteins</td>
+                            </tr>
+                            <tr data-category="proteins">
+                                <td>Fish (Salmon)</td>
+                                <td>100g cooked</td>
+                                <td>206</td>
+                                <td>22</td>
+                                <td>0</td>
+                                <td>12</td>
+                                <td>0</td>
+                                <td>Proteins</td>
+                            </tr>
+                            <tr data-category="proteins">
+                                <td>Fish (Tilapia)</td>
+                                <td>100g cooked</td>
+                                <td>129</td>
+                                <td>26</td>
+                                <td>0</td>
+                                <td>2.7</td>
+                                <td>0</td>
+                                <td>Proteins</td>
+                            </tr>
+                            <tr data-category="proteins">
+                                <td>Paneer (cottage cheese)</td>
+                                <td>100g</td>
+                                <td>265</td>
+                                <td>18</td>
+                                <td>3.4</td>
+                                <td>20</td>
+                                <td>0</td>
+                                <td>Proteins</td>
+                            </tr>
+                            <tr data-category="proteins">
+                                <td>Tofu (firm)</td>
+                                <td>100g</td>
+                                <td>144</td>
+                                <td>17</td>
+                                <td>3</td>
+                                <td>9</td>
+                                <td>2</td>
+                                <td>Proteins</td>
+                            </tr>
+
+                            <!-- DAIRY -->
+                            <tr class="category-header">
+                                <td colspan="8" style="background: var(--green); font-weight: bold; font-size: 1.1rem;">🥛 DAIRY</td>
+                            </tr>
+                            <tr data-category="dairy">
+                                <td>Milk (full fat)</td>
+                                <td>1 cup (244g)</td>
+                                <td>149</td>
+                                <td>7.7</td>
+                                <td>12</td>
+                                <td>7.9</td>
+                                <td>0</td>
+                                <td>Dairy</td>
+                            </tr>
+                            <tr data-category="dairy">
+                                <td>Milk (low fat)</td>
+                                <td>1 cup (244g)</td>
+                                <td>102</td>
+                                <td>8.2</td>
+                                <td>12</td>
+                                <td>2.4</td>
+                                <td>0</td>
+                                <td>Dairy</td>
+                            </tr>
+                            <tr data-category="dairy">
+                                <td>Curd/Yogurt (plain)</td>
+                                <td>1 cup (245g)</td>
+                                <td>149</td>
+                                <td>8.5</td>
+                                <td>11</td>
+                                <td>8</td>
+                                <td>0</td>
+                                <td>Dairy</td>
+                            </tr>
+                            <tr data-category="dairy">
+                                <td>Greek Yogurt</td>
+                                <td>1 cup (200g)</td>
+                                <td>130</td>
+                                <td>23</td>
+                                <td>9</td>
+                                <td>0.7</td>
+                                <td>0</td>
+                                <td>Dairy</td>
+                            </tr>
+                            <tr data-category="dairy">
+                                <td>Buttermilk (Chaas)</td>
+                                <td>1 cup (245g)</td>
+                                <td>98</td>
+                                <td>8</td>
+                                <td>12</td>
+                                <td>2.2</td>
+                                <td>0</td>
+                                <td>Dairy</td>
+                            </tr>
+
+                            <!-- GRAINS & FLOURS -->
+                            <tr class="category-header">
+                                <td colspan="8" style="background: var(--brown); font-weight: bold; font-size: 1.1rem; color: white;">🌾 GRAINS & FLOURS (Cooked)</td>
+                            </tr>
+                            <tr data-category="grains">
+                                <td>Brown Rice</td>
+                                <td>1 cup cooked (195g)</td>
+                                <td>216</td>
+                                <td>5</td>
+                                <td>45</td>
+                                <td>1.8</td>
+                                <td>3.5</td>
+                                <td>Grains & Flours</td>
+                            </tr>
+                            <tr data-category="grains">
+                                <td>White Rice</td>
+                                <td>1 cup cooked (158g)</td>
+                                <td>205</td>
+                                <td>4.2</td>
+                                <td>45</td>
+                                <td>0.4</td>
+                                <td>0.6</td>
+                                <td>Grains & Flours</td>
+                            </tr>
+                            <tr data-category="grains">
+                                <td>Chapati / Roti (whole wheat)</td>
+                                <td>1 medium (40g)</td>
+                                <td>104</td>
+                                <td>3.5</td>
+                                <td>20</td>
+                                <td>1.3</td>
+                                <td>2.8</td>
+                                <td>Grains & Flours</td>
+                            </tr>
+                            <tr data-category="grains">
+                                <td>Paratha (plain)</td>
+                                <td>1 medium (60g)</td>
+                                <td>210</td>
+                                <td>5</td>
+                                <td>26</td>
+                                <td>9</td>
+                                <td>2</td>
+                                <td>Grains & Flours</td>
+                            </tr>
+                            <tr data-category="grains">
+                                <td>Quinoa</td>
+                                <td>1 cup cooked (185g)</td>
+                                <td>222</td>
+                                <td>8.1</td>
+                                <td>39</td>
+                                <td>3.6</td>
+                                <td>5.2</td>
+                                <td>Grains & Flours</td>
+                            </tr>
+                            <tr data-category="grains">
+                                <td>Oats</td>
+                                <td>1 cup cooked (234g)</td>
+                                <td>166</td>
+                                <td>5.9</td>
+                                <td>28</td>
+                                <td>3.6</td>
+                                <td>4</td>
+                                <td>Grains & Flours</td>
+                            </tr>
+                            <tr data-category="grains">
+                                <td>Poha (flattened rice)</td>
+                                <td>1 cup cooked (180g)</td>
+                                <td>180</td>
+                                <td>3.5</td>
+                                <td>38</td>
+                                <td>1</td>
+                                <td>2</td>
+                                <td>Grains & Flours</td>
+                            </tr>
+                            <tr data-category="grains">
+                                <td>Upma (semolina)</td>
+                                <td>1 cup (200g)</td>
+                                <td>220</td>
+                                <td>6</td>
+                                <td>42</td>
+                                <td>3.5</td>
+                                <td>1.5</td>
+                                <td>Grains & Flours</td>
+                            </tr>
+
+                            <!-- COOKED DISHES -->
+                            <tr class="category-header">
+                                <td colspan="8" style="background: var(--peach); font-weight: bold; font-size: 1.1rem;">🍛 COOKED DISHES</td>
+                            </tr>
+                            <tr data-category="cooked">
+                                <td>Dal Tadka</td>
+                                <td>1 cup (250g)</td>
+                                <td>180</td>
+                                <td>10</td>
+                                <td>28</td>
+                                <td>3</td>
+                                <td>8</td>
+                                <td>Cooked Dishes</td>
+                            </tr>
+                            <tr data-category="cooked">
+                                <td>Rajma Curry</td>
+                                <td>1 cup (250g)</td>
+                                <td>230</td>
+                                <td>12</td>
+                                <td>35</td>
+                                <td>5</td>
+                                <td>10</td>
+                                <td>Cooked Dishes</td>
+                            </tr>
+                            <tr data-category="cooked">
+                                <td>Palak Paneer</td>
+                                <td>1 cup (250g)</td>
+                                <td>250</td>
+                                <td>12</td>
+                                <td>10</td>
+                                <td>18</td>
+                                <td>4</td>
+                                <td>Cooked Dishes</td>
+                            </tr>
+                            <tr data-category="cooked">
+                                <td>Aloo Gobi (dry)</td>
+                                <td>1 cup (200g)</td>
+                                <td>150</td>
+                                <td>3</td>
+                                <td>24</td>
+                                <td>5</td>
+                                <td>4</td>
+                                <td>Cooked Dishes</td>
+                            </tr>
+                            <tr data-category="cooked">
+                                <td>Chicken Curry</td>
+                                <td>1 cup (250g)</td>
+                                <td>280</td>
+                                <td>28</td>
+                                <td>8</td>
+                                <td>15</td>
+                                <td>2</td>
+                                <td>Cooked Dishes</td>
+                            </tr>
+                            <tr data-category="cooked">
+                                <td>Sambar</td>
+                                <td>1 cup (250g)</td>
+                                <td>120</td>
+                                <td>6</td>
+                                <td>20</td>
+                                <td>2</td>
+                                <td>5</td>
+                                <td>Cooked Dishes</td>
+                            </tr>
+                            <tr data-category="cooked">
+                                <td>Idli</td>
+                                <td>1 piece (40g)</td>
+                                <td>58</td>
+                                <td>2</td>
+                                <td>12</td>
+                                <td>0.3</td>
+                                <td>0.5</td>
+                                <td>Cooked Dishes</td>
+                            </tr>
+                            <tr data-category="cooked">
+                                <td>Dosa (plain)</td>
+                                <td>1 medium (80g)</td>
+                                <td>133</td>
+                                <td>4</td>
+                                <td>25</td>
+                                <td>2</td>
+                                <td>1.5</td>
+                                <td>Cooked Dishes</td>
+                            </tr>
+
+                            <!-- SNACKS -->
+                            <tr class="category-header">
+                                <td colspan="8" style="background: var(--green-dark); font-weight: bold; font-size: 1.1rem; color: white;">🥜 SNACKS & NUTS</td>
+                            </tr>
+                            <tr data-category="snacks">
+                                <td>Almonds (Badam)</td>
+                                <td>10 pieces (14g)</td>
+                                <td>80</td>
+                                <td>3</td>
+                                <td>3</td>
+                                <td>7</td>
+                                <td>1.8</td>
+                                <td>Snacks</td>
+                            </tr>
+                            <tr data-category="snacks">
+                                <td>Cashews (Kaju)</td>
+                                <td>10 pieces (15g)</td>
+                                <td>84</td>
+                                <td>2.6</td>
+                                <td>4.5</td>
+                                <td>6.7</td>
+                                <td>0.5</td>
+                                <td>Snacks</td>
+                            </tr>
+                            <tr data-category="snacks">
+                                <td>Walnuts (Akhrot)</td>
+                                <td>7 halves (14g)</td>
+                                <td>91</td>
+                                <td>2.1</td>
+                                <td>1.9</td>
+                                <td>9</td>
+                                <td>0.9</td>
+                                <td>Snacks</td>
+                            </tr>
+                            <tr data-category="snacks">
+                                <td>Peanuts (Moongfali)</td>
+                                <td>1/4 cup (36g)</td>
+                                <td>207</td>
+                                <td>9.4</td>
+                                <td>6</td>
+                                <td>18</td>
+                                <td>3.4</td>
+                                <td>Snacks</td>
+                            </tr>
+                            <tr data-category="snacks">
+                                <td>Roasted Chana</td>
+                                <td>1/4 cup (40g)</td>
+                                <td>147</td>
+                                <td>8</td>
+                                <td>24</td>
+                                <td>2.4</td>
+                                <td>7</td>
+                                <td>Snacks</td>
+                            </tr>
+                            <tr data-category="snacks">
+                                <td>Khakra (1 piece)</td>
+                                <td>1 piece (15g)</td>
+                                <td>60</td>
+                                <td>1.5</td>
+                                <td>11</td>
+                                <td>1</td>
+                                <td>1.5</td>
+                                <td>Snacks</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="highlight" style="margin-top: 2rem;">
+                        <h3>💡 How to Use This Guide</h3>
+                        <ul>
+                            <li><strong>Track your macros:</strong> Use search or filter to find foods you eat</li>
+                            <li><strong>Build your meals:</strong> Mix proteins + vegetables + grains to hit targets</li>
+                            <li><strong>Example meal:</strong> 1 cup dal (10g protein) + 2 rotis (7g protein) + 1 cup vegetables = balanced!</li>
+                            <li><strong>Watch portions:</strong> Serving sizes matter - measure until you know by eye</li>
+                        </ul>
+                    </div>
                 </div>
+
+                <script>
+                function filterFoods() {
+                    const searchTerm = document.getElementById('foodSearch').value.toLowerCase();
+                    const category = document.getElementById('categoryFilter').value;
+                    const rows = document.getElementById('foodTable').getElementsByTagName('tr');
+                    
+                    for (let i = 1; i < rows.length; i++) {  // Skip header row
+                        const row = rows[i];
+                        
+                        // Skip category header rows
+                        if (row.classList.contains('category-header')) {
+                            continue;
+                        }
+                        
+                        const foodName = row.cells[0].textContent.toLowerCase();
+                        const foodCategory = row.getAttribute('data-category');
+                        
+                        const matchesSearch = foodName.includes(searchTerm);
+                        const matchesCategory = category === 'all' || foodCategory === category;
+                        
+                        if (matchesSearch && matchesCategory) {
+                            row.style.display = '';
+                        } else {
+                            row.style.display = 'none';
+                        }
+                    }
+                }
+                </script>
+
+                <button class="btn" onclick="showSection('lifestyle')">Next: Lifestyle Strategies →</button>
+            </div>
+        </div>
+
 
                 <table id="foodTable">
                     <thead>
@@ -2413,61 +3231,191 @@
 
                     <div id="tdeeResults" style="display:none;">
                         <div class="results">
-                            <h3>Your Personalized Plan</h3>
+                            <h3>📊 Your Daily Targets (Summary)</h3>
                             
-                            <div class="result-item">
-                                <p>Basal Metabolic Rate (BMR)</p>
-                                <strong id="bmrResult"></strong>
+                            <table style="width: 100%; margin: 1.5rem 0;">
+                                <thead>
+                                    <tr>
+                                        <th>Metric</th>
+                                        <th>Value</th>
+                                        <th>What This Means</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>BMR</strong></td>
+                                        <td><strong id="bmrResult"></strong></td>
+                                        <td>Calories burned at rest (sleeping, breathing)</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>TDEE</strong></td>
+                                        <td><strong id="tdeeResult"></strong></td>
+                                        <td>Total calories burned daily (with activity)</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Target Intake</strong></td>
+                                        <td><strong id="calorieTarget"></strong></td>
+                                        <td>Eat this amount to lose weight</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Timeline</strong></td>
+                                        <td><strong id="timeline"></strong></td>
+                                        <td>Time to reach goal weight</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <h3 style="margin-top: 2rem;">🍽️ Your Daily Macro Targets</h3>
+                            
+                            <table style="width: 100%; margin: 1.5rem 0;">
+                                <thead>
+                                    <tr>
+                                        <th>Macro</th>
+                                        <th>Grams/Day</th>
+                                        <th>Calories</th>
+                                        <th>% of Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Protein</strong></td>
+                                        <td><strong id="proteinGrams"></strong></td>
+                                        <td><strong id="proteinCals"></strong></td>
+                                        <td>35%</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Carbs</strong></td>
+                                        <td><strong id="carbsGrams"></strong></td>
+                                        <td><strong id="carbsCals"></strong></td>
+                                        <td>40%</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Fats</strong></td>
+                                        <td><strong id="fatsGrams"></strong></td>
+                                        <td><strong id="fatsCals"></strong></td>
+                                        <td>25%</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <h3 style="margin-top: 2rem;">📅 Zig-Zag Weekly Plan</h3>
+                            <p style="margin-bottom: 1rem;"><strong>Why zig-zag?</strong> Lower calories weekdays, higher on weekends for social flexibility while staying on track.</p>
+                            
+                            <div style="overflow-x: auto;">
+                                <table style="width: 100%; margin: 1.5rem 0; font-size: 0.9rem;">
+                                    <thead>
+                                        <tr>
+                                            <th>Day</th>
+                                            <th>Eat (Cal)</th>
+                                            <th>Protein (g)</th>
+                                            <th>Carbs (g)</th>
+                                            <th>Fat (g)</th>
+                                            <th>Exercise (Cal)</th>
+                                            <th>NEAT* (Cal)</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td><strong>Mon</strong></td>
+                                            <td id="monCal"></td>
+                                            <td id="monProtein"></td>
+                                            <td id="monCarbs"></td>
+                                            <td id="monFat"></td>
+                                            <td id="monExercise"></td>
+                                            <td id="monNEAT"></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Tue</strong></td>
+                                            <td id="tueCal"></td>
+                                            <td id="tueProtein"></td>
+                                            <td id="tueCarbs"></td>
+                                            <td id="tueFat"></td>
+                                            <td id="tueExercise"></td>
+                                            <td id="tueNEAT"></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Wed</strong></td>
+                                            <td id="wedCal"></td>
+                                            <td id="wedProtein"></td>
+                                            <td id="wedCarbs"></td>
+                                            <td id="wedFat"></td>
+                                            <td id="wedExercise"></td>
+                                            <td id="wedNEAT"></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Thu</strong></td>
+                                            <td id="thuCal"></td>
+                                            <td id="thuProtein"></td>
+                                            <td id="thuCarbs"></td>
+                                            <td id="thuFat"></td>
+                                            <td id="thuExercise"></td>
+                                            <td id="thuNEAT"></td>
+                                        </tr>
+                                        <tr style="background: var(--peach-light);">
+                                            <td><strong>Fri</strong></td>
+                                            <td id="friCal"></td>
+                                            <td id="friProtein"></td>
+                                            <td id="friCarbs"></td>
+                                            <td id="friFat"></td>
+                                            <td id="friExercise"></td>
+                                            <td id="friNEAT"></td>
+                                        </tr>
+                                        <tr style="background: var(--peach-light);">
+                                            <td><strong>Sat</strong></td>
+                                            <td id="satCal"></td>
+                                            <td id="satProtein"></td>
+                                            <td id="satCarbs"></td>
+                                            <td id="satFat"></td>
+                                            <td id="satExercise"></td>
+                                            <td id="satNEAT"></td>
+                                        </tr>
+                                        <tr style="background: var(--peach-light);">
+                                            <td><strong>Sun</strong></td>
+                                            <td id="sunCal"></td>
+                                            <td id="sunProtein"></td>
+                                            <td id="sunCarbs"></td>
+                                            <td id="sunFat"></td>
+                                            <td id="sunExercise"></td>
+                                            <td id="sunNEAT"></td>
+                                        </tr>
+                                        <tr style="border-top: 2px solid var(--brown);">
+                                            <td><strong>TOTAL</strong></td>
+                                            <td><strong id="weekTotalCal"></strong></td>
+                                            <td><strong id="weekTotalProtein"></strong></td>
+                                            <td><strong id="weekTotalCarbs"></strong></td>
+                                            <td><strong id="weekTotalFat"></strong></td>
+                                            <td><strong id="weekTotalExercise"></strong></td>
+                                            <td><strong id="weekTotalNEAT"></strong></td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>AVG/Day</strong></td>
+                                            <td><strong id="weekAvgCal"></strong></td>
+                                            <td><strong id="weekAvgProtein"></strong></td>
+                                            <td><strong id="weekAvgCarbs"></strong></td>
+                                            <td><strong id="weekAvgFat"></strong></td>
+                                            <td><strong id="weekAvgExercise"></strong></td>
+                                            <td><strong id="weekAvgNEAT"></strong></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
 
-                            <div class="result-item">
-                                <p>Total Daily Energy Expenditure (TDEE)</p>
-                                <strong id="tdeeResult"></strong>
+                            <div class="warning" style="margin-top: 1.5rem;">
+                                <p><strong>*NEAT</strong> = Non-Exercise Activity Thermogenesis</p>
+                                <p>This is calories burned through daily activities: walking around house, cooking, cleaning, fidgeting, standing, etc.</p>
+                                <p><strong>Exercise calories</strong> = Planned workouts you need to do (gym, run, walk, etc.)</p>
+                                <p><strong>How to use this:</strong> Eat the "Eat (Cal)" amount each day + do the exercise shown. Your NEAT happens naturally!</p>
                             </div>
 
-                            <div class="result-item">
-                                <p>Daily Calorie Target for Weight Loss</p>
-                                <strong id="calorieTarget"></strong>
-                            </div>
-
-                            <div class="result-item">
-                                <p>Expected Time to Goal Weight</p>
-                                <strong id="timeline"></strong>
-                            </div>
-
-                            <h3 style="margin-top: 2rem;">Your Daily Macro Targets</h3>
-
-                            <div class="result-item">
-                                <p>Protein (35% of calories)</p>
-                                <strong id="proteinTarget"></strong>
-                            </div>
-
-                            <div class="result-item">
-                                <p>Carbohydrates (40% of calories)</p>
-                                <strong id="carbsTarget"></strong>
-                            </div>
-
-                            <div class="result-item">
-                                <p>Fats (25% of calories)</p>
-                                <strong id="fatsTarget"></strong>
-                            </div>
-
-                            <h3 style="margin-top: 2rem;">Zig-Zag Weekly Plan</h3>
-                            <p>For structured flexibility (weekdays lower, weekends higher):</p>
-
-                            <div class="result-item">
-                                <p>Monday-Thursday (4 days)</p>
-                                <strong id="weekdayCalories"></strong>
-                            </div>
-
-                            <div class="result-item">
-                                <p>Friday-Sunday (3 days)</p>
-                                <strong id="weekendCalories"></strong>
-                            </div>
-
-                            <div class="result-item">
-                                <p>Weekly Total (average stays on track)</p>
-                                <strong id="weeklyTotal"></strong>
+                            <div class="highlight" style="margin-top: 1.5rem;">
+                                <h3>💡 How to Use This Plan</h3>
+                                <ol>
+                                    <li><strong>Weekdays (Mon-Thu):</strong> Slightly lower calories, perfect for work days</li>
+                                    <li><strong>Weekends (Fri-Sun):</strong> Higher calories for social eating</li>
+                                    <li><strong>Exercise:</strong> Aim for the calories shown - check Exercise Reference below for how long to workout</li>
+                                    <li><strong>NEAT:</strong> Stay active throughout the day - take stairs, walk while talking, cook, clean</li>
+                                    <li><strong>Weekly average stays on target</strong> - this is what matters for weight loss!</li>
+                                </ol>
                             </div>
                         </div>
                     </div>
@@ -3167,119 +4115,6 @@
     </footer>
 
     <script>
-        // Indian Food Database
-        const foodDatabase = [
-            // Grains & Breads
-            {name: "Roti (whole wheat)", category: "grains", serving: "1 medium (40g)", calories: 120, protein: 3, carbs: 18, fat: 4, fiber: 3},
-            {name: "Ragi roti", category: "grains", serving: "1 medium (40g)", calories: 100, protein: 3, carbs: 15, fat: 2, fiber: 4},
-            {name: "Jowar roti", category: "grains", serving: "1 medium (40g)", calories: 110, protein: 3, carbs: 17, fat: 2, fiber: 3},
-            {name: "Bajra roti", category: "grains", serving: "1 medium (40g)", calories: 115, protein: 3, carbs: 17, fat: 3, fiber: 3},
-            {name: "Paratha (plain)", category: "grains", serving: "1 medium (60g)", calories: 200, protein: 4, carbs: 25, fat: 9, fiber: 2},
-            {name: "White rice (cooked)", category: "grains", serving: "1 cup (150g)", calories: 200, protein: 4, carbs: 45, fat: 0.5, fiber: 1},
-            {name: "Brown rice (cooked)", category: "grains", serving: "1 cup (150g)", calories: 215, protein: 5, carbs: 45, fat: 2, fiber: 4},
-            {name: "Ragi dosa", category: "grains", serving: "1 medium", calories: 120, protein: 4, carbs: 18, fat: 3, fiber: 3},
-            {name: "Idli", category: "grains", serving: "2 pieces", calories: 80, protein: 2, carbs: 16, fat: 0.5, fiber: 1},
-            {name: "Dosa (plain)", category: "grains", serving: "1 medium", calories: 130, protein: 4, carbs: 23, fat: 2, fiber: 1},
-            {name: "Upma", category: "grains", serving: "1 bowl (150g)", calories: 180, protein: 5, carbs: 30, fat: 4, fiber: 2},
-            {name: "Poha", category: "grains", serving: "1 bowl (150g)", calories: 170, protein: 4, carbs: 32, fat: 3, fiber: 2},
-            {name: "Quinoa (cooked)", category: "grains", serving: "1 cup (185g)", calories: 220, protein: 8, carbs: 39, fat: 4, fiber: 5},
-
-            // Proteins
-            {name: "Paneer", category: "proteins", serving: "100g", calories: 265, protein: 18, carbs: 3, fat: 20, fiber: 0},
-            {name: "Egg (whole, boiled)", category: "proteins", serving: "1 large", calories: 78, protein: 6, carbs: 0.5, fat: 5, fiber: 0},
-            {name: "Chicken breast (grilled)", category: "proteins", serving: "100g", calories: 165, protein: 31, carbs: 0, fat: 4, fiber: 0},
-            {name: "Chicken curry", category: "proteins", serving: "100g with gravy", calories: 180, protein: 25, carbs: 5, fat: 8, fiber: 1},
-            {name: "Fish (white fish, grilled)", category: "proteins", serving: "100g", calories: 110, protein: 24, carbs: 0, fat: 1, fiber: 0},
-            {name: "Fish curry", category: "proteins", serving: "100g with gravy", calories: 150, protein: 20, carbs: 4, fat: 6, fiber: 1},
-            {name: "Mutton curry", category: "proteins", serving: "100g with gravy", calories: 220, protein: 20, carbs: 3, fat: 15, fiber: 1},
-            {name: "Tofu", category: "proteins", serving: "100g", calories: 70, protein: 8, carbs: 2, fat: 4, fiber: 0},
-
-            // Dals & Legumes
-            {name: "Moong dal (cooked)", category: "dals", serving: "1 cup (200g)", calories: 180, protein: 12, carbs: 30, fat: 1, fiber: 8},
-            {name: "Toor dal (cooked)", category: "dals", serving: "1 cup (200g)", calories: 200, protein: 14, carbs: 34, fat: 1, fiber: 9},
-            {name: "Masoor dal (cooked)", category: "dals", serving: "1 cup (200g)", calories: 180, protein: 13, carbs: 31, fat: 1, fiber: 8},
-            {name: "Chana dal (cooked)", category: "dals", serving: "1 cup (200g)", calories: 210, protein: 15, carbs: 35, fat: 2, fiber: 10},
-            {name: "Rajma (cooked)", category: "dals", serving: "1 cup (200g)", calories: 225, protein: 15, carbs: 40, fat: 1, fiber: 11},
-            {name: "Chole/Chickpeas (cooked)", category: "dals", serving: "1 cup (200g)", calories: 220, protein: 12, carbs: 36, fat: 4, fiber: 10},
-            {name: "Black dal/Urad dal", category: "dals", serving: "1 cup (200g)", calories: 200, protein: 13, carbs: 33, fat: 1, fiber: 9},
-
-            // Vegetables
-            {name: "Aloo/Potato sabzi", category: "vegetables", serving: "100g", calories: 90, protein: 2, carbs: 18, fat: 1, fiber: 2},
-            {name: "Bhindi/Okra sabzi", category: "vegetables", serving: "100g", calories: 40, protein: 2, carbs: 7, fat: 0.5, fiber: 3},
-            {name: "Baingan/Eggplant bharta", category: "vegetables", serving: "100g", calories: 60, protein: 1, carbs: 8, fat: 3, fiber: 3},
-            {name: "Palak/Spinach sabzi", category: "vegetables", serving: "100g", calories: 30, protein: 3, carbs: 4, fat: 0.5, fiber: 2},
-            {name: "Palak paneer", category: "vegetables", serving: "150g", calories: 220, protein: 12, carbs: 8, fat: 16, fiber: 3},
-            {name: "Mixed vegetables sabzi", category: "vegetables", serving: "100g", calories: 50, protein: 2, carbs: 8, fat: 1, fiber: 3},
-            {name: "Cabbage sabzi", category: "vegetables", serving: "100g", calories: 35, protein: 1, carbs: 6, fat: 0.5, fiber: 2},
-            {name: "Cauliflower sabzi", category: "vegetables", serving: "100g", calories: 40, protein: 2, carbs: 6, fat: 1, fiber: 2},
-            {name: "Tomato (raw)", category: "vegetables", serving: "1 medium", calories: 22, protein: 1, carbs: 5, fat: 0, fiber: 1},
-            {name: "Cucumber (raw)", category: "vegetables", serving: "1 cup", calories: 16, protein: 1, carbs: 4, fat: 0, fiber: 1},
-
-            // Dairy
-            {name: "Dahi/Curd (plain)", category: "dairy", serving: "1 cup (240g)", calories: 150, protein: 8, carbs: 12, fat: 8, fiber: 0},
-            {name: "Greek yogurt", category: "dairy", serving: "1 cup (240g)", calories: 140, protein: 20, carbs: 8, fat: 4, fiber: 0},
-            {name: "Milk (full fat)", category: "dairy", serving: "1 cup (240ml)", calories: 150, protein: 8, carbs: 12, fat: 8, fiber: 0},
-            {name: "Milk (low fat)", category: "dairy", serving: "1 cup (240ml)", calories: 100, protein: 8, carbs: 12, fat: 2, fiber: 0},
-            {name: "Lassi (sweet)", category: "dairy", serving: "1 glass (200ml)", calories: 140, protein: 6, carbs: 20, fat: 4, fiber: 0},
-            {name: "Chaas/Buttermilk", category: "dairy", serving: "1 glass (200ml)", calories: 40, protein: 2, carbs: 5, fat: 1, fiber: 0},
-            {name: "Ghee", category: "dairy", serving: "1 tbsp (14g)", calories: 120, protein: 0, carbs: 0, fat: 14, fiber: 0},
-
-            // Snacks
-            {name: "Samosa", category: "snacks", serving: "1 piece", calories: 250, protein: 4, carbs: 30, fat: 12, fiber: 2},
-            {name: "Pakora/Bhajji", category: "snacks", serving: "2 pieces", calories: 150, protein: 3, carbs: 15, fat: 8, fiber: 1},
-            {name: "Dhokla", category: "snacks", serving: "2 pieces", calories: 120, protein: 4, carbs: 20, fat: 2, fiber: 2},
-            {name: "Khandvi", category: "snacks", serving: "5 pieces", calories: 110, protein: 5, carbs: 15, fat: 3, fiber: 2},
-            {name: "Khakra", category: "snacks", serving: "3 pieces", calories: 100, protein: 3, carbs: 18, fat: 2, fiber: 2},
-            {name: "Makhana/Fox nuts", category: "snacks", serving: "1 cup (30g)", calories: 110, protein: 3, carbs: 22, fat: 1, fiber: 3},
-            {name: "Almonds", category: "snacks", serving: "10 pieces (14g)", calories: 80, protein: 3, carbs: 3, fat: 7, fiber: 2},
-            {name: "Walnuts", category: "snacks", serving: "7 halves (14g)", calories: 90, protein: 2, carbs: 2, fat: 9, fiber: 1},
-        ];
-
-        // Populate food table
-        function populateFoodTable(foods) {
-            const tbody = document.getElementById('foodTableBody');
-            tbody.innerHTML = '';
-            
-            foods.forEach(food => {
-                const row = tbody.insertRow();
-                row.innerHTML = `
-                    <td><strong>${food.name}</strong></td>
-                    <td>${food.serving}</td>
-                    <td>${food.calories}</td>
-                    <td>${food.protein}</td>
-                    <td>${food.carbs}</td>
-                    <td>${food.fat}</td>
-                    <td>${food.fiber}</td>
-                `;
-            });
-        }
-
-        // Filter food by category
-        function filterFood(category) {
-            const buttons = document.querySelectorAll('.filter-btn');
-            buttons.forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-
-            if (category === 'all') {
-                populateFoodTable(foodDatabase);
-            } else {
-                const filtered = foodDatabase.filter(food => food.category === category);
-                populateFoodTable(filtered);
-            }
-        }
-
-        // Search functionality
-        document.getElementById('foodSearch').addEventListener('input', function(e) {
-            const searchTerm = e.target.value.toLowerCase();
-            const filtered = foodDatabase.filter(food => 
-                food.name.toLowerCase().includes(searchTerm)
-            );
-            populateFoodTable(filtered);
-        });
-
-        // Initialize food table
-        populateFoodTable(foodDatabase);
-
         // TDEE Calculator
         function calculateTDEE() {
             // Get input values
@@ -3338,35 +4173,98 @@
             const calorieTarget = Math.round(tdee - deficit);
 
             // Calculate macros (35% protein, 40% carbs, 25% fat)
-            const protein = Math.round((calorieTarget * 0.35) / 4);
-            const carbs = Math.round((calorieTarget * 0.40) / 4);
-            const fats = Math.round((calorieTarget * 0.25) / 9);
+            const proteinGrams = Math.round((calorieTarget * 0.35) / 4);
+            const carbsGrams = Math.round((calorieTarget * 0.40) / 4);
+            const fatsGrams = Math.round((calorieTarget * 0.25) / 9);
+
+            const proteinCals = Math.round(calorieTarget * 0.35);
+            const carbsCals = Math.round(calorieTarget * 0.40);
+            const fatsCals = Math.round(calorieTarget * 0.25);
 
             // Calculate timeline
             const weightToLose = weight - goalWeight;
             const weeksToGoal = Math.ceil(weightToLose / lossRate);
             const monthsToGoal = Math.ceil(weeksToGoal / 4);
 
-            // Calculate zig-zag
-            const weeklyTarget = calorieTarget * 7;
-            const weekdayCal = Math.round(calorieTarget - 150);
-            const weekendCal = Math.round(calorieTarget + 200);
-            const zigzagTotal = (weekdayCal * 4) + (weekendCal * 3);
+            // Calculate zig-zag weekly plan
+            const weekdayCal = Math.round(calorieTarget - 150);  // Mon-Thu
+            const weekendCal = Math.round(calorieTarget + 200);  // Fri-Sun
 
-            // Display results
-            document.getElementById('bmrResult').textContent = Math.round(bmr) + ' calories/day';
-            document.getElementById('tdeeResult').textContent = tdee + ' calories/day';
-            document.getElementById('calorieTarget').textContent = calorieTarget + ' calories/day';
+            // Calculate exercise and NEAT
+            const totalActivityCals = tdee - bmr;  // Total calories from all activity
+            const exerciseCals = Math.min(300, Math.round(totalActivityCals * 0.4));  // Aim for ~300 cal from exercise
+            const neatCals = totalActivityCals - exerciseCals;  // Rest is NEAT
+
+            // Helper function to calculate macros for a given calorie amount
+            function calcMacros(cals) {
+                return {
+                    protein: Math.round((cals * 0.35) / 4),
+                    carbs: Math.round((cals * 0.40) / 4),
+                    fat: Math.round((cals * 0.25) / 9)
+                };
+            }
+
+            // Weekday macros (Mon-Thu)
+            const weekdayMacros = calcMacros(weekdayCal);
+            
+            // Weekend macros (Fri-Sun)
+            const weekendMacros = calcMacros(weekendCal);
+
+            // Weekly totals
+            const weekTotalCal = (weekdayCal * 4) + (weekendCal * 3);
+            const weekTotalProtein = (weekdayMacros.protein * 4) + (weekendMacros.protein * 3);
+            const weekTotalCarbs = (weekdayMacros.carbs * 4) + (weekendMacros.carbs * 3);
+            const weekTotalFat = (weekdayMacros.fat * 4) + (weekendMacros.fat * 3);
+            const weekTotalExercise = exerciseCals * 7;
+            const weekTotalNEAT = neatCals * 7;
+
+            // Display daily summary
+            document.getElementById('bmrResult').textContent = Math.round(bmr) + ' cal/day';
+            document.getElementById('tdeeResult').textContent = tdee + ' cal/day';
+            document.getElementById('calorieTarget').textContent = calorieTarget + ' cal/day';
             document.getElementById('timeline').textContent = monthsToGoal + ' months (' + weeksToGoal + ' weeks)';
             
-            document.getElementById('proteinTarget').textContent = protein + 'g per day';
-            document.getElementById('carbsTarget').textContent = carbs + 'g per day';
-            document.getElementById('fatsTarget').textContent = fats + 'g per day';
+            document.getElementById('proteinGrams').textContent = proteinGrams + 'g';
+            document.getElementById('carbsGrams').textContent = carbsGrams + 'g';
+            document.getElementById('fatsGrams').textContent = fatsGrams + 'g';
+            
+            document.getElementById('proteinCals').textContent = proteinCals + ' cal';
+            document.getElementById('carbsCals').textContent = carbsCals + ' cal';
+            document.getElementById('fatsCals').textContent = fatsCals + ' cal';
 
-            document.getElementById('weekdayCalories').textContent = weekdayCal + ' cal/day';
-            document.getElementById('weekendCalories').textContent = weekendCal + ' cal/day';
-            document.getElementById('weeklyTotal').textContent = zigzagTotal + ' cal (avg ' + Math.round(zigzagTotal/7) + '/day)';
+            // Populate weekly table
+            const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+            
+            days.forEach((day, index) => {
+                const isWeekend = index >= 4;  // Fri, Sat, Sun
+                const dayCal = isWeekend ? weekendCal : weekdayCal;
+                const dayMacros = isWeekend ? weekendMacros : weekdayMacros;
+                
+                document.getElementById(day + 'Cal').textContent = dayCal;
+                document.getElementById(day + 'Protein').textContent = dayMacros.protein;
+                document.getElementById(day + 'Carbs').textContent = dayMacros.carbs;
+                document.getElementById(day + 'Fat').textContent = dayMacros.fat;
+                document.getElementById(day + 'Exercise').textContent = exerciseCals;
+                document.getElementById(day + 'NEAT').textContent = neatCals;
+            });
 
+            // Populate weekly totals
+            document.getElementById('weekTotalCal').textContent = weekTotalCal;
+            document.getElementById('weekTotalProtein').textContent = weekTotalProtein;
+            document.getElementById('weekTotalCarbs').textContent = weekTotalCarbs;
+            document.getElementById('weekTotalFat').textContent = weekTotalFat;
+            document.getElementById('weekTotalExercise').textContent = weekTotalExercise;
+            document.getElementById('weekTotalNEAT').textContent = weekTotalNEAT;
+
+            // Populate weekly averages
+            document.getElementById('weekAvgCal').textContent = Math.round(weekTotalCal / 7);
+            document.getElementById('weekAvgProtein').textContent = Math.round(weekTotalProtein / 7);
+            document.getElementById('weekAvgCarbs').textContent = Math.round(weekTotalCarbs / 7);
+            document.getElementById('weekAvgFat').textContent = Math.round(weekTotalFat / 7);
+            document.getElementById('weekAvgExercise').textContent = exerciseCals;
+            document.getElementById('weekAvgNEAT').textContent = neatCals;
+
+            // Show results and scroll
             document.getElementById('tdeeResults').style.display = 'block';
             document.getElementById('tdeeResults').scrollIntoView({ behavior: 'smooth' });
         }
