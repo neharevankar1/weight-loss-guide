@@ -303,13 +303,35 @@
         thead, tbody {
             display: table;
             width: 100%;
+            table-layout: fixed;
         }
 
         th, td {
-            padding: 1rem;
+            padding: 0.75rem 1rem;
             text-align: left;
             border-bottom: 1px solid var(--border);
             color: var(--text-dark);
+            vertical-align: middle;
+        }
+
+        /* Right-align numeric columns */
+        th:nth-child(2), td:nth-child(2),
+        th:nth-child(3), td:nth-child(3),
+        th:nth-child(4), td:nth-child(4),
+        th:nth-child(5), td:nth-child(5),
+        th:nth-child(6), td:nth-child(6),
+        th:nth-child(7), td:nth-child(7) {
+            text-align: center;
+        }
+
+        /* First column stays left-aligned */
+        th:first-child, td:first-child {
+            text-align: left;
+        }
+
+        /* Last column (notes/explanations) stays left-aligned */
+        th:last-child, td:last-child {
+            text-align: left;
         }
 
         th {
@@ -318,6 +340,7 @@
             font-weight: 600;
             position: sticky;
             top: 0;
+            white-space: nowrap;
         }
 
         td {
@@ -3581,12 +3604,64 @@
                     <div class="highlight">
                         <h3>How to Use This Reference</h3>
                         <p><strong>Adjust for your weight:</strong> Heavier bodies burn more calories, lighter bodies burn less.</p>
-                        <p><strong>Example:</strong> If you weigh 84kg instead of 70kg:</p>
-                        <ul>
-                            <li>Multiply listed calories by 1.2 (84÷70 = 1.2)</li>
-                            <li>Walking brisk: 320 × 1.2 = 384 cal/hour</li>
-                            <li>Running moderate: 600 × 1.2 = 720 cal/hour</li>
-                        </ul>
+                        
+                        <div style="background: var(--cream); padding: 1.5rem; border-radius: 10px; margin: 1rem 0;">
+                            <p><strong>🧮 Practical Example: If you weigh 80kg</strong></p>
+                            <p style="margin: 0.5rem 0;"><strong>Step 1:</strong> Calculate your multiplier = 80 ÷ 70 = 1.14</p>
+                            <p style="margin: 0.5rem 0;"><strong>Step 2:</strong> Multiply any exercise calories by 1.14</p>
+                            
+                            <table style="margin-top: 1rem; font-size: 0.95rem;">
+                                <thead>
+                                    <tr>
+                                        <th>Exercise</th>
+                                        <th>70kg Person</th>
+                                        <th>80kg Person (×1.14)</th>
+                                        <th>Your Extra Burn</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Walking (brisk)</strong></td>
+                                        <td>320 cal/hr</td>
+                                        <td><strong>365 cal/hr</strong></td>
+                                        <td>+45 cal/hr</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Running (moderate)</strong></td>
+                                        <td>600 cal/hr</td>
+                                        <td><strong>684 cal/hr</strong></td>
+                                        <td>+84 cal/hr</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Cycling (moderate)</strong></td>
+                                        <td>480 cal/hr</td>
+                                        <td><strong>547 cal/hr</strong></td>
+                                        <td>+67 cal/hr</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Swimming (moderate)</strong></td>
+                                        <td>520 cal/hr</td>
+                                        <td><strong>593 cal/hr</strong></td>
+                                        <td>+73 cal/hr</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Strength Training</strong></td>
+                                        <td>360 cal/hr</td>
+                                        <td><strong>410 cal/hr</strong></td>
+                                        <td>+50 cal/hr</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>HIIT</strong></td>
+                                        <td>600-900 cal/hr</td>
+                                        <td><strong>684-1026 cal/hr</strong></td>
+                                        <td>+84-126 cal/hr</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            
+                            <p style="margin-top: 1rem;"><strong>💡 Real-world use:</strong> If you're 80kg and walk briskly for 45 minutes = 365 × 0.75 = <strong>274 calories burned!</strong></p>
+                        </div>
+                        
                         <p><strong>Why this matters:</strong> Log exercise in your TDEE calculation above for accurate daily calorie targets!</p>
                     </div>
                 </div>
