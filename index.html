@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Understanding Your Body: Weight Loss Made Clear</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap');
         
         * {
             margin: 0;
@@ -292,18 +292,6 @@
 
         .expandable-header.open::after {
             transform: rotate(180deg);
-        }
-
-        .expandable-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out;
-            padding: 0 1rem;
-        }
-
-        .expandable-content.open {
-            max-height: 10000px;
-            padding: 1rem;
         }
 
         /* Highlight boxes */
@@ -849,13 +837,7 @@
             transform: translateX(5px);
         }
         
-        .expandable-content {
-            padding: 2rem;
-            background: var(--bg-card);
-            border: 1px solid var(--border-subtle);
-            border-radius: 0 0 8px 8px;
-            margin-top: -8px;
-        }
+        
         
         /* === LIST IMPROVEMENTS === */
         ul li {
@@ -914,6 +896,171 @@
         
         #foodTable td:first-child {
             text-align: left;
+        }
+
+    
+
+        /* === SLEEKER HEADER - LESS BULKY === */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            padding: 2rem 2rem;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+        }
+        
+        header h1 {
+            font-size: 2rem;
+            font-weight: 400;
+            color: white;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.3px;
+        }
+        
+        header p {
+            font-size: 1rem;
+            color: rgba(255,255,255,0.9);
+            font-weight: 300;
+        }
+        
+        /* === SLEEKER EXPANDABLE HEADERS === */
+        .expandable-header {
+            background: transparent;
+            color: var(--text-dark);
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            border: 1px solid var(--border-medium);
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 1.05rem;
+            transition: all 0.3s ease;
+            box-shadow: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .expandable-header:hover {
+            background: var(--bg-accent);
+            border-color: var(--primary);
+            transform: none;
+        }
+        
+        .expandable-header::after {
+            content: '▼';
+            font-size: 0.8rem;
+            color: var(--text-medium);
+            transition: transform 0.3s ease;
+        }
+        
+        .expandable.open .expandable-header::after {
+            transform: rotate(180deg);
+        }
+        
+        
+        
+        .expandable.open 
+        
+        /* === SLEEKER CARDS === */
+        .card {
+            background: var(--bg-card);
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-subtle);
+        }
+        
+        /* === REFINED TYPOGRAPHY === */
+        body {
+            font-family: 'Roboto', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-weight: 400;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--bg-main);
+        }
+        
+        h2 {
+            color: var(--text-dark);
+            margin: 1.5rem 0 1rem 0;
+            font-size: 1.6rem;
+            font-weight: 500;
+            letter-spacing: -0.3px;
+        }
+        
+        h3 {
+            color: var(--text-dark);
+            margin: 1.2rem 0 0.8rem 0;
+            font-size: 1.25rem;
+            font-weight: 500;
+        }
+        
+        h4 {
+            color: var(--text-dark);
+            margin: 1rem 0 0.6rem 0;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+        
+        /* === SLEEKER BUTTONS === */
+        .btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 500;
+            margin: 0.8rem 0;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-sm);
+            display: inline-block;
+        }
+        
+        nav button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: none;
+        }
+        
+        /* === SLEEKER CALCULATOR === */
+        .calculator {
+            background: var(--bg-card);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-subtle);
+        }
+        
+        .calculator h3 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            font-weight: 500;
+            text-align: center;
+        }
+
+    
+        /* === EXPANDABLE SECTIONS - PROPER HIDE/SHOW === */
+        .expandable-content {
+            display: none;
+            padding: 1.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+            margin-top: -8px;
+        }
+        
+        .expandable.open .expandable-content {
+            display: block;
         }
 
     </style>
